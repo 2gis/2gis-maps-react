@@ -1,0 +1,37 @@
+{
+  "name": "2gismaps-react",
+  "version": "0.0.1",
+  "description": "2gismaps React component",
+  "main": "lib/index.js",
+  "jsnext:main": "es6/index.js",
+  "files": [
+    "css",
+    "es6",
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "build": "nwb build",
+    "clean": "nwb clean",
+    "start": "nwb serve",
+    "test": "nwb test",
+    "test:watch": "nwb test --server"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "react": "0.14.x"
+  },
+  "devDependencies": {
+    "nwb": "0.9.x",
+    "react": "0.14.x",
+    "react-dom": "0.14.x"
+  },
+  "author": "",
+  "homepage": "",
+  "license": "MIT",
+  "repository": "git@github.com:2gis/2gismaps-react.git",
+  "keywords": [
+    "react-component"
+  ]
+}
