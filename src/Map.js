@@ -25,7 +25,6 @@ export default class Map extends Component {
         });
     }
     componentWillUnmount() {
-        super.componentWillUnmount();
         this.dgElement.remove();
     }
 }

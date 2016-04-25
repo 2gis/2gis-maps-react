@@ -29,7 +29,6 @@ export default class Popup extends Component {
         }, 0);
     }
     componentWillUnmount() {
-        super.componentWillUnmount();
         if (this.dgElement) {
             this.dgElement.remove();
         }

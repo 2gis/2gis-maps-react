@@ -34,7 +34,6 @@ export default class Marker extends Component {
         }, 0);
     }
     componentWillUnmount() {
-        super.componentWillUnmount();
         if (this.dgElement) {
             this.dgElement.remove();
         }
