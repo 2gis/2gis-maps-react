@@ -6,8 +6,10 @@ import {Map, Marker, Popup} from '../../src'
 const map = (
     <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
         <Marker pos={[54.98, 82.89]}>
-            <h2>Vestibulum eu odio.</h2>
-            <p>Morbi mattis ullamcorper velit.</p>
+            <Popup pos={[54.96, 82.9]}>
+                <h2>Vestibulum eu odio.</h2>
+                <p>Morbi mattis ullamcorper velit.</p>
+            </Popup>
         </Marker>
         <Popup pos={[54.96, 82.9]}>
             <h2>Vestibulum eu odio.</h2>

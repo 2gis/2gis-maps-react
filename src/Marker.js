@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
+import React, { Component, Children } from 'react'
+import { render, findDOMNode } from 'react-dom'
+import Popup from './Popup'
 
 export default class Marker extends Component {
     render() {
@@ -11,29 +12,30 @@ export default class Marker extends Component {
                 this.dgElement = DG.marker(this.props.pos)
                     .addTo(this.props.elementParent.dgElement);
 
-                if (this.props.children) {
-                    let popup = this.dgElement.bindPopup(' ');
-                    popup.reactChildren = this.props.children;
+                if (Children.count(this.props.children) == 1 && this.props.children.type.name == 'Popup') {
+                    let pos = this.props.pos;
+                    let popupChildren = this.props.children.props.children;
+                    let domElement = findDOMNode(this);
+                    let dgElement = this.dgElement;
+                    let elementParent = this;
 
-                    this.dgElement.on('click', (e)=>{
-                        let domElement = e.target._popup._container.getElementsByClassName('dg-popup__container-wrapper')[0];
-
-                        const renderElement = (
-                            <div className="dg-popup__container">
-                                {this.props.children}
-                            </div>
+                    this.dgElement.on('click', (e) => {
+                        let renderElement = (
+                            <Popup pos={pos} fromMarker={true} elementParent={elementParent}>
+                                {popupChildren}
+                            </Popup>
                         );
 
-                        render(renderElement, domElement);
+                        render(renderElement, domElement); // Render Popup
 
-                        e.target._popup._updateLayout();
-                        e.target._popup._updatePosition();
+                        dgElement._icon.style.display = 'none'; // Hide Marker when open Popup
                     });
                 }
             }
         }, 0);
     }
     componentWillUnmount() {
+        super.componentWillUnmount();
         if (this.dgElement) {
             this.dgElement.remove();
         }

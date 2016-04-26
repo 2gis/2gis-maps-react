@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
+import { render, findDOMNode } from 'react-dom'
+import Marker from './Marker'
 
 export default class Popup extends Component {
     render() {
@@ -8,10 +9,13 @@ export default class Popup extends Component {
     componentDidMount() {
         setTimeout(()=>{
             if (this.props.elementParent) {
+                let mapElement = this.props.fromMarker ?
+                    this.props.elementParent.props.elementParent.dgElement : this.props.elementParent.dgElement;
+
                 let dgElement = DG.popup()
                     .setLatLng(this.props.pos)
                     .setContent(' ')
-                    .openOn(this.props.elementParent.dgElement);
+                    .openOn(mapElement);
 
                 let domElement = dgElement._container.getElementsByClassName('dg-popup__container-wrapper')[0];
 
@@ -25,6 +29,17 @@ export default class Popup extends Component {
 
                 dgElement._updateLayout();
                 dgElement._updatePosition();
+
+                if (this.props.fromMarker) {
+                    let domElementForMarker = this.props.elementParent.dgElement._icon;
+                    let map = this.props.elementParent.props.elementParent.dgElement;
+
+                    map.on('popupclose', (e) => {
+                        if (e.popup._leaflet_id == dgElement._leaflet_id) {
+                            domElementForMarker.style.display = 'block';
+                        }
+                    });
+                }
             }
         }, 0);
     }
