@@ -38,7 +38,7 @@
 ###### We recommend using ES7
 
 ##### Create simple map.
-```
+```jsx
 import React, { Component } from 'react'
 import { Map } from '2gismaps-react'
 
@@ -51,7 +51,7 @@ class RenderElement extends Component {
 ```
 
 ##### Create simple Marker and Marker with label.
-```
+```jsx
 import React, { Component } from 'react'
 import { Map, Marker } from '2gismaps-react'
 
@@ -70,7 +70,7 @@ class RenderElement extends Component {
 ```
 
 ##### Create simple Popup and Popup inside Marker
-```
+```jsx
 import React, { Component } from 'react'
 import { Map, Marker, Popup } from '2gismaps-react'
 
@@ -95,7 +95,7 @@ class RenderElement extends Component {
 ```
 
 ##### Create Ruler on map.
-```
+```jsx
 import React, { Component } from 'react'
 import { Map, Ruler } from '2gismaps-react'
 
@@ -116,7 +116,7 @@ class RenderElement extends Component {
 ```
 
 ##### Create different geometries: Circle, Polygon and Path.
-```
+```jsx
 import React, { Component } from 'react'
 import { Map, Ruler } from '2gismaps-react'
 
