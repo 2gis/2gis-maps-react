@@ -37,46 +37,51 @@
 ## Getting started
 ###### We recommend using ES7
 
-##### Create simple map.
+##### Create simple map. [Api referense.](http://api.2gis.ru/doc/maps/manual/map/)
 ```jsx
 import React, { Component } from 'react'
 import { Map } from '2gismaps-react'
 
 class RenderElement extends Component {
     render() {
-        return (<Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13} />);
+        return (
+                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13} />
+                );
     }
 }
 
 ```
 
-##### Create simple Marker and Marker with label.
+##### Create simple Marker and Marker with label. [Api referense.](http://api.2gis.ru/doc/maps/manual/markers/)
 ```jsx
 import React, { Component } from 'react'
 import { Map, Marker } from '2gismaps-react'
 
 class RenderElement extends Component {
     render() {
-        return (<Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
-                    <Marker pos={[54.95, 82.82]} />
-                            
-                    <Marker pos={[54.93, 82.89]} label={ text: 'I'm label' }>
-                    
-                    <Marker pos={[54.98, 82.89]} label={ text: 'I'm label', static: true }>
-                </Map>);
+        return (
+                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+                        <Marker pos={[54.95, 82.82]} />
+                                
+                        <Marker pos={[54.93, 82.89]} label={ text: 'I'm label' }/>
+                        
+                        <Marker pos={[54.98, 82.89]} label={ text: 'I'm label', static: true }/>
+                    </Map>
+                );
     }
 }
 
 ```
 
-##### Create simple Popup and Popup inside Marker
+##### Create simple Popup and Popup inside Marker. [Api referense.](http://api.2gis.ru/doc/maps/manual/popups/)
 ```jsx
 import React, { Component } from 'react'
 import { Map, Marker, Popup } from '2gismaps-react'
 
 class RenderElement extends Component {
     render() {
-        return (<Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+        return (
+                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
                         <Popup pos={[54.96, 82.9]}>
                             <h2>Vestibulum eu odio.</h2>
                             <p>Morbi mattis ullamcorper velit.</p>
@@ -88,20 +93,22 @@ class RenderElement extends Component {
                                 <p>Morbi mattis ullamcorper velit.</p>
                             </Popup>
                         </Marker>
-                    </Map>);
+                    </Map>
+                );
     }
 }
 
 ```
 
-##### Create Ruler on map.
+##### Create Ruler on map. [Api referense.](http://api.2gis.ru/doc/maps/manual/ruler/)
 ```jsx
 import React, { Component } from 'react'
 import { Map, Ruler } from '2gismaps-react'
 
 class RenderElement extends Component {
     render() {
-        return (<Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+        return (
+                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
                         <Ruler points={[
                                        [51.7314, 36.1938],
                                        [51.7307, 36.1894],
@@ -109,21 +116,23 @@ class RenderElement extends Component {
                                        [51.7299, 36.1968],
                                        [51.7307, 36.1968]]}
                                        />
-                    </Map>);
+                    </Map>
+                );
     }
 }
 
 ```
 
-##### Create different geometries: Circle, Polygon and Path.
+##### Create different geometries: Circle, Polygon and Path. [Api referense.](http://api.2gis.ru/doc/maps/manual/geometries/)
 ```jsx
 import React, { Component } from 'react'
 import { Map, Ruler } from '2gismaps-react'
 
 class RenderElement extends Component {
     render() {
-        return (<Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
-                        <Circle center={[51.7299, 36.1968]} radius={}>
+        return (
+                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+                        <Circle center={[51.7299, 36.1968]} radius={}/>
                         
                         <Polygon points={[
                                             [51.7314, 36.1938],
@@ -139,7 +148,8 @@ class RenderElement extends Component {
                                        [51.7299, 36.1968],
                                        [51.7307, 36.1968]]}
                                        />
-                    </Map>);
+                    </Map>
+                );
     }
 }
 
