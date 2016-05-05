@@ -38,6 +38,10 @@
 ###### We recommend using ES7
 
 ##### Create simple map. [Api referense.](http://api.2gis.ru/doc/maps/manual/map/)
+
+Map is the basic component. 
+To create a specified center point , zoom level and size of dom element.
+
 ```jsx
 import React, { Component } from 'react'
 import { Map } from '2gismaps-react'
@@ -53,6 +57,10 @@ class RenderElement extends Component {
 ```
 
 ##### Create simple Marker and Marker with label. [Api referense.](http://api.2gis.ru/doc/maps/manual/markers/)
+
+Marker is simple image with reference to a specific location on the map.
+To create a marker coordinates are specified and the inscription ( if available) .
+
 ```jsx
 import React, { Component } from 'react'
 import { Map, Marker } from '2gismaps-react'
@@ -63,9 +71,9 @@ class RenderElement extends Component {
                     <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
                         <Marker pos={[54.95, 82.82]} />
                                 
-                        <Marker pos={[54.93, 82.89]} label={ text: 'I'm label' }/>
+                        <Marker pos={[54.93, 82.89]} label={ text: 'I\'m label' }/>
                         
-                        <Marker pos={[54.98, 82.89]} label={ text: 'I'm label', static: true }/>
+                        <Marker pos={[54.98, 82.89]} label={ text: 'I\'m label', static: true }/>
                     </Map>
                 );
     }
@@ -74,6 +82,11 @@ class RenderElement extends Component {
 ```
 
 ##### Create simple Popup and Popup inside Marker. [Api referense.](http://api.2gis.ru/doc/maps/manual/popups/)
+
+In popup you can show any HTML-code.
+Popup has reference to a specific location on the map.
+Popup can be inside Marker and opening by click to Marker.
+
 ```jsx
 import React, { Component } from 'react'
 import { Map, Marker, Popup } from '2gismaps-react'
@@ -101,6 +114,9 @@ class RenderElement extends Component {
 ```
 
 ##### Create Ruler on map. [Api referense.](http://api.2gis.ru/doc/maps/manual/ruler/)
+
+The Ruler is needed to measure distances on the map.
+
 ```jsx
 import React, { Component } from 'react'
 import { Map, Ruler } from '2gismaps-react'
@@ -124,6 +140,9 @@ class RenderElement extends Component {
 ```
 
 ##### Create different geometries: Circle, Polygon and Path. [Api referense.](http://api.2gis.ru/doc/maps/manual/geometries/)
+
+Inside polygon or circle you can add popup.
+
 ```jsx
 import React, { Component } from 'react'
 import { Map, Ruler } from '2gismaps-react'
@@ -132,7 +151,12 @@ class RenderElement extends Component {
     render() {
         return (
                     <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
-                        <Circle center={[51.7299, 36.1968]} radius={}/>
+                        <Circle center={[51.7299, 36.1968]} radius={200}>
+                            <Popup pos={[54.96, 82.9]}>
+                                <h2>Vestibulum eu odio.</h2>
+                                <p>Morbi mattis ullamcorper velit.</p>
+                            </Popup>
+                        </Circle>
                         
                         <Polygon points={[
                                             [51.7314, 36.1938],
