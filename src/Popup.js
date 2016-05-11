@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { render, findDOMNode } from 'react-dom'
-import Marker from './Marker'
 
 export default class Popup extends Component {
     render() {
