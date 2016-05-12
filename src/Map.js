@@ -44,6 +44,10 @@ export default class Map extends Component {
                     case 'Marker':
                         let dgElementMarker = DG.marker(child.props.pos).addTo(this.state.Map);
 
+                        if (child.props.label) {
+                            dgElementMarker.bindLabel(child.props.label.text, { static: child.props.label.static || false })
+                        }
+
                         if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
                             dgElementMarker.on('click', e => {
                                 dgElementMarker.setOpacity(0);
@@ -57,12 +61,14 @@ export default class Map extends Component {
                                 });
                             });
                         }
-
                         break;
 
                     case 'Popup':
                         this.renderPopup(child.props.pos, this.state.Map, child.props.children);
+                        break;
 
+                    case 'Ruler':
+                        DG.ruler(child.props.points).addTo(this.state.Map);
                         break;
                 }
             });

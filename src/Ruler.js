@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { render, findDOMNode } from 'react-dom'
 
-export default class Marker extends Component {
+export default class Ruler extends Component {
     static propsTypes = {
-        pos: PropTypes.array,
-        label: PropTypes.object
+        points: PropTypes.array
     };
     render() {
         return <noscript></noscript>;

@@ -9,5 +9,3 @@ export default class Popup extends Component {
         return <noscript></noscript>;
     }
 }
-
-
