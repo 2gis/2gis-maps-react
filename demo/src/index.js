@@ -1,16 +1,27 @@
 import React, { Component, Children, cloneElement } from 'react'
 import { render } from 'react-dom'
 
-import {Map, Marker, Popup} from '../../src'
+import { Map, Marker, Popup } from '../../src'
 
 const map = (
     <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
         <Marker pos={[54.98, 82.89]}>
-            <Popup pos={[54.96, 82.9]}>
+            <Popup>
                 <h2>Vestibulum eu odio.</h2>
                 <p>Morbi mattis ullamcorper velit.</p>
             </Popup>
         </Marker>
+
+        <Marker pos={[54.98, 82.86]}>
+            <Popup>
+                <h2>Vestibulum eu odio.</h2>
+            </Popup>
+        </Marker>
+
+        <Marker pos={[54.98, 82.9]}/>
+
+        <Marker pos={[54.96, 82.91]}/>
+
         <Popup pos={[54.96, 82.9]}>
             <h2>Vestibulum eu odio.</h2>
             <p>Morbi mattis ullamcorper velit.</p>
