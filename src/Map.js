@@ -40,11 +40,19 @@ export default class Map extends Component {
             dgElementMarker.bindLabel(child.props.label.text, { static: child.props.label.static || false })
         }
 
+        if (child.props.onClick) {
+            dgElementMarker.on('click', e => child.props.onClick.call(this, e));
+        }
+
         if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
             dgElementMarker.on('click', e => {
                 dgElementMarker.setOpacity(0);
 
-                let dgElementPopup = this.renderPopup(child, child.props.children.props.children);
+                let dgElementPopup = this.renderPopup(
+                    child.props.pos,
+                    child.props.children.props.children,
+                    child.props.children.props.onClick
+                );
 
                 this.state.Map.on('popupclose', e => {
                     if (e.popup._leaflet_id == dgElementPopup._leaflet_id) {
@@ -55,7 +63,7 @@ export default class Map extends Component {
         }
     }
 
-    renderPopup(child, children) {
+    renderPopup(pos, children, onClick) {
         const popupHtml = ReactDOMServer.renderToString(
             <div style={{
                 padding: 0,
@@ -64,16 +72,16 @@ export default class Map extends Component {
             }}>{ children }</div>
         );
 
-        let dgElement = DG.popup()
-            .setLatLng(child.props.pos)
+        let dgElementPopup = DG.popup()
+            .setLatLng(pos)
             .setContent(popupHtml)
             .openOn(this.state.Map);
 
-        if (child.props.onClick) {
-            dgElement.on('click', e => child.props.onClick.call(this, e));
+        if (onClick) {
+            dgElementPopup.on('click', e => onClick.call(this, e));
         }
 
-        return dgElement;
+        return dgElementPopup;
     }
 
     renderRuler(child) {
@@ -89,7 +97,11 @@ export default class Map extends Component {
                         break;
 
                     case 'Popup':
-                        this.renderPopup(child, child.props.children);
+                        this.renderPopup(
+                            child.props.pos,
+                            child.props.children,
+                            child.props.onClick
+                        );
                         break;
 
                     case 'Ruler':

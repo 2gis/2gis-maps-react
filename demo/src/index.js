@@ -15,16 +15,20 @@ class ExampleMap extends Component {
                 </Marker>
 
                 <Marker pos={[54.98, 82.86]}>
-                    <Popup>
+                    <Popup onClick={e => console.log(e)}>
                         <h2>Vestibulum eu odio.</h2>
                     </Popup>
                 </Marker>
 
-                <Marker pos={[54.98, 82.9]} label={{text: 'I\'m marker with static label.', static: true}}/>
+                <Marker
+                    pos={[54.98, 82.9]}
+                    label={{text: 'I\'m marker with static label.', static: true}}
+                    onClick={e => console.log(e)}
+                />
 
                 <Marker pos={[54.96, 82.91]} label={{text: 'I\'m marker.'}}/>
 
-                <Popup pos={[54.96, 82.9]}>
+                <Popup pos={[54.96, 82.9]} onClick={e => console.log(e)}>
                     <h2>Vestibulum eu odio.</h2>
                     <p>Morbi mattis ullamcorper velit.</p>
                 </Popup>

@@ -113,6 +113,9 @@ class RenderElement extends Component {
 
 ```
 
+Also you can use props `onClick` for click event on Marker, Popup and Popup inside Marker.
+But it is 2gis-maps-api event. React events not work inside 2gis-maps-api elements.
+
 ##### Create Ruler on map. [Api referense.](http://api.2gis.ru/doc/maps/manual/ruler/)
 
 The Ruler is needed to measure distances on the map.
