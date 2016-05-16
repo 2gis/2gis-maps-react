@@ -6,6 +6,6 @@ export default class Popup extends Component {
         pos: PropTypes.array
     };
     render() {
-        return <noscript></noscript>;
+        return <noscript></noscript>; // invariant
     }
 }

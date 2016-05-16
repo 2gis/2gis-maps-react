@@ -1,97 +1,105 @@
-import React, { Component, Children, cloneElement, PropTypes } from 'react'
-import { findDOMNode, render } from 'react-dom'
-import renderPopup from './Popup'
+import React, { Component, Children, PropTypes } from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { render } from 'react-dom';
 
 export default class Map extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            Map: null
-        };
-    }
     static propsTypes = {
         size: PropTypes.object,
         center: PropTypes.array,
-        zoom: PropTypes.number
+        zoom: PropTypes.number,
+        onClick: PropTypes.func
     };
-    renderPopup(pos, map, children) {
-        let dgElement = DG.popup()
-            .setLatLng(pos)
-            .setContent(' ')
-            .openOn(map);
 
-        let container = dgElement._container;
+    state = {
+        Map: null
+    };
 
-        let domElement = container.getElementsByClassName('dg-popup__container-wrapper')[0];
+    componentDidMount() {
+        const { container } = this.refs;
+        const Map = DG.map(container, {
+            center: this.props.center,
+            zoom: this.props.zoom
+        });
+        this.setState({
+            Map: Map
+        });
+    }
 
-        const renderElement = (
-            <div className="dg-popup__container">
-                {children}
-            </div>
+    componentDidUpdate() {
+        this.renderMap();
+    }
+
+    componentWillUnmount() {
+        this.state.Map.remove();
+    }
+
+    renderMarker(child) {
+        let dgElementMarker = DG.marker(child.props.pos).addTo(this.state.Map);
+
+        if (child.props.label) {
+            dgElementMarker.bindLabel(child.props.label.text, { static: child.props.label.static || false })
+        }
+
+        if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
+            dgElementMarker.on('click', e => {
+                dgElementMarker.setOpacity(0);
+
+                let dgElementPopup = this.renderPopup(child, child.props.children.props.children);
+
+                this.state.Map.on('popupclose', e => {
+                    if (e.popup._leaflet_id == dgElementPopup._leaflet_id) {
+                        dgElementMarker.setOpacity(1);
+                    }
+                });
+            });
+        }
+    }
+
+    renderPopup(child, children) {
+        const popupHtml = ReactDOMServer.renderToString(
+            <div style={{
+                padding: 0,
+                margin: 0,
+                display: 'inline'
+            }}>{ children }</div>
         );
 
-        render(renderElement, domElement);
+        let dgElement = DG.popup()
+            .setLatLng(child.props.pos)
+            .setContent(popupHtml)
+            .openOn(this.state.Map);
 
-        dgElement._updateLayout();
-        dgElement._updatePosition();
+        if (child.props.onClick) {
+            dgElement.on('click', child.props.onClick);
+        }
 
         return dgElement;
     }
-    reRender() {
-        if (Children.count(this.props.children) > 0 && this.state.Map) {
+
+    renderRuler(child) {
+        DG.ruler(child.props.points).addTo(this.state.Map);
+    }
+
+    renderMap() {
+        if (this.state.Map) {
             Children.toArray(this.props.children).forEach(child => {
                 switch (child.type.name) {
                     case 'Marker':
-                        let dgElementMarker = DG.marker(child.props.pos).addTo(this.state.Map);
-
-                        if (child.props.label) {
-                            dgElementMarker.bindLabel(child.props.label.text, { static: child.props.label.static || false })
-                        }
-
-                        if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
-                            dgElementMarker.on('click', e => {
-                                dgElementMarker.setOpacity(0);
-
-                                let dgElementPopup = this.renderPopup(child.props.pos, this.state.Map, child.props.children.props.children);
-
-                                this.state.Map.on('popupclose', e => {
-                                    if (e.popup._leaflet_id == dgElementPopup._leaflet_id) {
-                                        dgElementMarker.setOpacity(1);
-                                    }
-                                });
-                            });
-                        }
+                        this.renderMarker(child);
                         break;
 
                     case 'Popup':
-                        this.renderPopup(child.props.pos, this.state.Map, child.props.children);
+                        this.renderPopup(child, child.props.children);
                         break;
 
                     case 'Ruler':
-                        DG.ruler(child.props.points).addTo(this.state.Map);
+                        this.renderRuler(child);
                         break;
                 }
             });
         }
     }
-    componentDidMount() {
-        const Map = DG.map(findDOMNode(this), {
-            center: this.props.center,
-            zoom: this.props.zoom
-        });
 
-        this.setState({
-            Map: Map
-        });
-
-        this.reRender();
-    }
-    componentDidUpdate() {
-        this.reRender();
-    }
-    componentWillUnmount() {
-        this.state.Map.remove();
-    }
     render() {
         const divStyle = {
             width: this.props.size.width,
@@ -99,7 +107,9 @@ export default class Map extends Component {
         };
 
         return (
-            <div style={divStyle}></div>
+            <div>
+                <div ref="container" style={divStyle}></div>
+            </div>
         );
     }
 }
