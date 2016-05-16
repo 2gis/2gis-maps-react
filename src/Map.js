@@ -70,7 +70,7 @@ export default class Map extends Component {
             .openOn(this.state.Map);
 
         if (child.props.onClick) {
-            dgElement.on('click', child.props.onClick);
+            dgElement.on('click', e => child.props.onClick.call(this, e));
         }
 
         return dgElement;

@@ -1,7 +1,7 @@
 {
-  "name": "2gismaps-react",
+  "name": "2gis-maps-react",
   "version": "0.0.1",
-  "description": "2gismaps React component",
+  "description": "2gis-maps React component",
   "main": "lib/index.js",
   "jsnext:main": "es6/index.js",
   "files": [
