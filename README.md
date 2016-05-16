@@ -44,7 +44,7 @@ To create a specified center point , zoom level and size of dom element.
 
 ```jsx
 import React, { Component } from 'react'
-import { Map } from '2gismaps-react'
+import { Map } from '2gis-maps-react'
 
 class RenderElement extends Component {
     render() {
@@ -63,7 +63,7 @@ To create a marker coordinates are specified and the inscription ( if available)
 
 ```jsx
 import React, { Component } from 'react'
-import { Map, Marker } from '2gismaps-react'
+import { Map, Marker } from '2gis-maps-react'
 
 class RenderElement extends Component {
     render() {
@@ -89,7 +89,7 @@ Popup can be inside Marker and opening by click to Marker.
 
 ```jsx
 import React, { Component } from 'react'
-import { Map, Marker, Popup } from '2gismaps-react'
+import { Map, Marker, Popup } from '2gis-maps-react'
 
 class RenderElement extends Component {
     render() {
@@ -119,7 +119,7 @@ The Ruler is needed to measure distances on the map.
 
 ```jsx
 import React, { Component } from 'react'
-import { Map, Ruler } from '2gismaps-react'
+import { Map, Ruler } from '2gis-maps-react'
 
 class RenderElement extends Component {
     render() {
