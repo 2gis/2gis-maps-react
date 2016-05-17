@@ -91,6 +91,14 @@ export default class Map extends Component {
         DG.ruler(child.props.points).addTo(this.state.Map);
     }
 
+    renderGeoJSON(child) {
+        let options = {
+            onEachFeature: child.props.onEachFeature || null
+        };
+
+        DG.geoJson(child.props.data, options).addTo(this.state.Map);
+    }
+
     renderCircle(child) {
         let dgElementCircle = DG.circle(child.props.pos, child.props.radius);
 
@@ -121,6 +129,10 @@ export default class Map extends Component {
 
                     case 'Ruler':
                         this.renderRuler(child);
+                        break;
+
+                    case 'GeoJSON':
+                        this.renderGeoJSON(child);
                         break;
 
                     case 'Circle':
