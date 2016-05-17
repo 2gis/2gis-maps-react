@@ -126,6 +126,10 @@ export default class Map extends Component {
         dgElementCircle.addTo(this.state.Map);
     }
 
+    renderPolyline(child) {
+        DG.polyline(child.props.points, child.props.style || null).addTo(this.state.Map);
+    }
+
     renderMap() {
         if (this.state.Map) {
             Children.toArray(this.props.children).forEach(child => {
@@ -152,6 +156,10 @@ export default class Map extends Component {
 
                     case 'Circle':
                         this.renderCircle(child);
+                        break;
+
+                    case 'Polyline':
+                        this.renderPolyline(child);
                         break;
                 }
             });

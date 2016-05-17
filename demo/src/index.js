@@ -1,7 +1,7 @@
 import React, { Component, Children, cloneElement } from 'react'
 import { render } from 'react-dom'
 
-import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle } from '../../src'
+import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline } from '../../src'
 
 class ExampleMap extends Component {
     echoLatlng(e) {
@@ -12,7 +12,7 @@ class ExampleMap extends Component {
             <Map
                 style={{width: "500px", height: "500px"}}
                 center={[54.98, 82.89]}
-                zoom={13}
+                zoom={12}
                 onClick={this.echoLatlng}
             >
                 <Marker pos={[54.98, 82.89]}>
@@ -77,6 +77,19 @@ class ExampleMap extends Component {
                         <p>Some text.</p>
                     </Popup>
                 </Circle>
+
+                <Polyline points={[
+                                    [54.95829, 82.82386],
+                                    [54.94055, 82.89253],
+                                    [54.95356, 82.96291]
+                                    ]}
+                          style={{
+                            "color": "#ff0000",
+                            "weight": 8,
+                            "opacity": 0.45
+                         }}
+                />
+
             </Map>
         );
     }
