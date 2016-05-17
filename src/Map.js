@@ -41,7 +41,13 @@ export default class Map extends Component {
 
     componentDidUpdate() {
         Children.toArray(this.props.children).forEach(child => {
-            this['render' + child.type.name](child);
+            if (typeof this['render' + child.type.name] == 'function') {
+                this['render' + child.type.name](child);
+            }
+            else {
+                const name = child.type.name || child.type;
+                console.error('Component ' + name + ' not allowed inside Map.');
+            }
         });
     }
 
