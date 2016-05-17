@@ -31,6 +31,10 @@ export default class Map extends Component {
 
         const Map = DG.map(container, options);
 
+        if (this.props.onClick) {
+            Map.on('click', e => this.props.onClick.call(this, e));
+        }
+
         this.setState({
             Map: Map
         });
@@ -99,6 +103,10 @@ export default class Map extends Component {
         DG.geoJson(child.props.data, options).addTo(this.state.Map);
     }
 
+    renderWkt(child) {
+        DG.Wkt.geoJsonLayer(child.props.data).addTo(this.state.Map);
+    }
+
     renderCircle(child) {
         let dgElementCircle = DG.circle(child.props.pos, child.props.radius);
 
@@ -133,6 +141,10 @@ export default class Map extends Component {
 
                     case 'GeoJSON':
                         this.renderGeoJSON(child);
+                        break;
+
+                    case 'Wkt':
+                        this.renderWkt(child);
                         break;
 
                     case 'Circle':

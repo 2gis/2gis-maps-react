@@ -1,12 +1,20 @@
 import React, { Component, Children, cloneElement } from 'react'
 import { render } from 'react-dom'
 
-import { Map, Marker, Popup, Ruler, GeoJSON, Circle } from '../../src'
+import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle } from '../../src'
 
 class ExampleMap extends Component {
+    echoLatlng(e) {
+        console.log(e.latlng.lat + ' ' + e.latlng.lng);
+    }
     render() {
         return (
-            <Map style={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+            <Map
+                style={{width: "500px", height: "500px"}}
+                center={[54.98, 82.89]}
+                zoom={13}
+                onClick={this.echoLatlng}
+            >
                 <Marker pos={[54.98, 82.89]}>
                     <Popup>
                         <h2>Vestibulum eu odio.</h2>
@@ -50,6 +58,15 @@ class ExampleMap extends Component {
                                     }
                                 }}
                          onEachFeature={(feature, layer) => layer.bindPopup(feature.properties.address)}
+                />
+
+                <Wkt data='POLYGON((
+                                    82.87313 54.97564,
+                                    82.87176 54.96194,
+                                    82.85253 54.96224,
+                                    82.85562 54.97662,
+                                    82.87313 54.97564
+                                  ))'
                 />
 
                 <Circle pos={[54.99, 82.89]} radius={500}>
