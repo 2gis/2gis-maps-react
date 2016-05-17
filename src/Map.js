@@ -1,4 +1,4 @@
-import React, { Component, Children, PropTypes } from 'react';
+import React, { Component, Children, PropTypes, cloneElement } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { render } from 'react-dom';
 
@@ -56,47 +56,55 @@ export default class Map extends Component {
         }
 
         if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
-            dgElementMarker.on('click', e => {
-                dgElementMarker.setOpacity(0);
+            let popupChild = cloneElement(child.props.children, {pos: child.props.pos});
 
-                let dgElementPopup = this.renderPopup(
-                    child.props.pos,
-                    child.props.children.props.children,
-                    child.props.children.props.onClick
-                );
-
-                this.state.Map.on('popupclose', e => {
-                    if (e.popup._leaflet_id == dgElementPopup._leaflet_id) {
-                        dgElementMarker.setOpacity(1);
-                    }
-                });
-            });
+            this.renderPopup(popupChild, dgElementMarker);
         }
     }
 
-    renderPopup(pos, children, onClick) {
+    renderPopup(child, element) {
         const popupHtml = ReactDOMServer.renderToString(
             <div style={{
                 padding: 0,
                 margin: 0,
                 display: 'inline'
-            }}>{ children }</div>
+            }}>{ child.props.children }</div>
         );
 
-        let dgElementPopup = DG.popup()
-            .setLatLng(pos)
-            .setContent(popupHtml)
-            .openOn(this.state.Map);
+        let dgElementPopup = null;
 
-        if (onClick) {
-            dgElementPopup.on('click', e => onClick.call(this, e));
+        if (!element || element._leaflet_id == this.state.Map._leaflet_id) {
+            dgElementPopup = DG.popup()
+                .setLatLng(child.props.pos)
+                .setContent(popupHtml)
+                .openOn(this.state.Map);
+        } else {
+            dgElementPopup = element.bindPopup(popupHtml)._popup;
         }
 
-        return dgElementPopup;
+        if (child.props.onClick) {
+            dgElementPopup.on('click', e => child.props.onClick.call(this, e));
+        }
     }
 
     renderRuler(child) {
         DG.ruler(child.props.points).addTo(this.state.Map);
+    }
+
+    renderCircle(child) {
+        let dgElementCircle = DG.circle(child.props.pos, child.props.radius);
+
+        if (child.props.style) {
+            dgElementCircle.setStyle(child.props.style);
+        }
+
+        if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
+            let popupChild = cloneElement(child.props.children, {pos: child.props.pos});
+
+            this.renderPopup(popupChild, dgElementCircle);
+        }
+
+        dgElementCircle.addTo(this.state.Map);
     }
 
     renderMap() {
@@ -108,15 +116,15 @@ export default class Map extends Component {
                         break;
 
                     case 'Popup':
-                        this.renderPopup(
-                            child.props.pos,
-                            child.props.children,
-                            child.props.onClick
-                        );
+                        this.renderPopup(child, this.state.Map);
                         break;
 
                     case 'Ruler':
                         this.renderRuler(child);
+                        break;
+
+                    case 'Circle':
+                        this.renderCircle(child);
                         break;
                 }
             });

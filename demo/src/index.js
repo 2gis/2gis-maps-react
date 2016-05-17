@@ -1,7 +1,7 @@
 import React, { Component, Children, cloneElement } from 'react'
 import { render } from 'react-dom'
 
-import { Map, Marker, Popup, Ruler } from '../../src'
+import { Map, Marker, Popup, Ruler, Circle } from '../../src'
 
 class ExampleMap extends Component {
     render() {
@@ -38,6 +38,13 @@ class ExampleMap extends Component {
                         [55.00, 82.89],
                         [54.99, 82.91]
                         ]}/>
+
+                <Circle pos={[54.99, 82.89]} radius={500}>
+                    <Popup>
+                        <h2>Circle popup.</h2>
+                        <p>Some text.</p>
+                    </Popup>
+                </Circle>
             </Map>
         );
     }
