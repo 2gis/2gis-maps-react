@@ -5,7 +5,7 @@ import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle } from '../../src'
 
 class ExampleMap extends Component {
     echoLatlng(e) {
-        console.log(e.latlng.lat + ' ' + e.latlng.lng);
+        console.log(e.latlng.lat + ', ' + e.latlng.lng);
     }
     render() {
         return (
@@ -48,16 +48,18 @@ class ExampleMap extends Component {
                         ]}/>
 
                 <GeoJSON data={{
-                                    "type": "Feature",
-                                    "properties": {
-                                        "address": "г. Новосибирск, пл. Карла Маркса, 7"
-                                    },
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [82.8974, 54.9801]
-                                    }
+                            "type": "LineString",
+                            "coordinates": [
+                                            [82.86540, 55.00006],
+                                            [82.89493, 55.00302],
+                                            [82.91931, 54.99544]
+                                           ]
                                 }}
-                         onEachFeature={(feature, layer) => layer.bindPopup(feature.properties.address)}
+                         style={{
+                            "color": "#ff7800",
+                            "weight": 5,
+                            "opacity": 0.65
+                         }}
                 />
 
                 <Wkt data='POLYGON((

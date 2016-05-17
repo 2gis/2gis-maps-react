@@ -97,7 +97,10 @@ export default class Map extends Component {
 
     renderGeoJSON(child) {
         let options = {
-            onEachFeature: child.props.onEachFeature || null
+            style: child.props.style || null,
+            pointToLayer: child.props.pointToLayer || null,
+            onEachFeature: child.props.onEachFeature || null,
+            filter: child.props.filter || null
         };
 
         DG.geoJson(child.props.data, options).addTo(this.state.Map);
