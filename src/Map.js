@@ -107,7 +107,7 @@ export default class Map extends Component {
     }
 
     renderWkt(child) {
-        DG.Wkt.geoJsonLayer(child.props.data).addTo(this.state.Map);
+        DG.Wkt.geoJsonLayer(child.props.data, child.props.style || null).addTo(this.state.Map);
     }
 
     renderCircle(child) {

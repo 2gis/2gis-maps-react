@@ -69,6 +69,10 @@ class ExampleMap extends Component {
                                     82.85562 54.97662,
                                     82.87313 54.97564
                                   ))'
+                     style={{
+                            "color": "#00ff00",
+                            "weight": 1
+                         }}
                 />
 
                 <Circle pos={[54.99, 82.89]} radius={500}>
