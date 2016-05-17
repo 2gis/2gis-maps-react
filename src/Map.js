@@ -4,10 +4,13 @@ import { render } from 'react-dom';
 
 export default class Map extends Component {
     static propsTypes = {
-        size: PropTypes.object,
+        style: PropTypes.object,
         center: PropTypes.array,
         zoom: PropTypes.number,
-        onClick: PropTypes.func
+        geoClicker: PropTypes.bool,
+        projectDetector: PropTypes.bool,
+        zoomControl: PropTypes.bool,
+        fullscreenControl: PropTypes.bool
     };
 
     state = {
@@ -16,10 +19,18 @@ export default class Map extends Component {
 
     componentDidMount() {
         const { container } = this.refs;
-        const Map = DG.map(container, {
+
+        let options = {
+            zoom: this.props.zoom,
             center: this.props.center,
-            zoom: this.props.zoom
-        });
+            geoclicker: this.props.geoClicker || false,
+            projectDetector: this.props.projectDetector || false,
+            zoomControl: this.props.zoomControl || true,
+            fullscreenControl: this.props.fullscreenControl || true
+        };
+
+        const Map = DG.map(container, options);
+
         this.setState({
             Map: Map
         });
@@ -113,15 +124,8 @@ export default class Map extends Component {
     }
 
     render() {
-        const divStyle = {
-            width: this.props.size.width,
-            height: this.props.size.height
-        };
-
         return (
-            <div>
-                <div ref="container" style={divStyle}></div>
-            </div>
+            <div ref="container" style={this.props.style}></div>
         );
     }
 }

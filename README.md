@@ -49,12 +49,23 @@ import { Map } from '2gis-maps-react'
 class RenderElement extends Component {
     render() {
         return (
-                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13} />
+                    <Map style={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13} />
                 );
     }
 }
 
 ```
+
+###### Props for Map
+
+| Prop              | Default value | Type    |
+| ------------------|:-------------:| -------:|
+| center            | null          |  array  |
+| zoom              | null          |   int   |
+| geoClicker        | false         |   bool  |
+| projectDetector   | false         |   bool  |
+| zoomControl       | true          |   bool  |
+| fullscreenControl | true          |   bool  |
 
 ##### Create simple Marker and Marker with label. [Api referense.](http://api.2gis.ru/doc/maps/manual/markers/)
 
@@ -68,7 +79,7 @@ import { Map, Marker } from '2gis-maps-react'
 class RenderElement extends Component {
     render() {
         return (
-                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+                    <Map style={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
                         <Marker pos={[54.95, 82.82]} />
                                 
                         <Marker pos={[54.93, 82.89]} label={ text: 'I\'m label' }/>
@@ -94,7 +105,7 @@ import { Map, Marker, Popup } from '2gis-maps-react'
 class RenderElement extends Component {
     render() {
         return (
-                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+                    <Map style={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
                         <Popup pos={[54.96, 82.9]}>
                             <h2>Vestibulum eu odio.</h2>
                             <p>Morbi mattis ullamcorper velit.</p>
@@ -113,6 +124,13 @@ class RenderElement extends Component {
 
 ```
 
+
+###### Props for Marker and Popup
+
+| Prop              | Default value | Type    |
+| ------------------|:-------------:| -------:|
+| center            | null          |  array  |
+
 Also you can use props `onClick` for click event on Marker, Popup and Popup inside Marker.
 But it is 2gis-maps-api event. React events not work inside 2gis-maps-api elements.
 
@@ -127,7 +145,7 @@ import { Map, Ruler } from '2gis-maps-react'
 class RenderElement extends Component {
     render() {
         return (
-                    <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+                    <Map style={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
                         <Ruler points={[
                                        [51.7314, 36.1938],
                                        [51.7307, 36.1894],
@@ -141,3 +159,9 @@ class RenderElement extends Component {
 }
 
 ```
+
+###### Props for Marker and Ruler
+
+| Prop              | Default value | Type    |
+| ------------------|:-------------:| -------:|
+| points            | null          |  array  |

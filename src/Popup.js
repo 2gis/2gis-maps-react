@@ -3,7 +3,8 @@ import { render, findDOMNode } from 'react-dom'
 
 export default class Popup extends Component {
     static propsTypes = {
-        pos: PropTypes.array
+        pos: PropTypes.array,
+        onClick: PropTypes.func
     };
     render() {
         return <noscript></noscript>; // invariant

@@ -6,7 +6,7 @@ import { Map, Marker, Popup, Ruler } from '../../src'
 class ExampleMap extends Component {
     render() {
         return (
-            <Map size={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
+            <Map style={{width: "500px", height: "500px"}} center={[54.98, 82.89]} zoom={13}>
                 <Marker pos={[54.98, 82.89]}>
                     <Popup>
                         <h2>Vestibulum eu odio.</h2>
