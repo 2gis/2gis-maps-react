@@ -41,7 +41,9 @@ export default class Map extends Component {
     }
 
     componentDidUpdate() {
-        this.renderMap();
+        Children.toArray(this.props.children).forEach(child => {
+            this['render' + child.type.name](child);
+        });
     }
 
     componentWillUnmount() {
@@ -144,46 +146,6 @@ export default class Map extends Component {
         }
 
         dgElementPolygon.addTo(this.state.Map);
-    }
-
-    renderMap() {
-        if (this.state.Map) {
-            Children.toArray(this.props.children).forEach(child => {
-                switch (child.type.name) {
-                    case 'Marker':
-                        this.renderMarker(child);
-                        break;
-
-                    case 'Popup':
-                        this.renderPopup(child);
-                        break;
-
-                    case 'Ruler':
-                        this.renderRuler(child);
-                        break;
-
-                    case 'GeoJSON':
-                        this.renderGeoJSON(child);
-                        break;
-
-                    case 'Wkt':
-                        this.renderWkt(child);
-                        break;
-
-                    case 'Circle':
-                        this.renderCircle(child);
-                        break;
-
-                    case 'Polyline':
-                        this.renderPolyline(child);
-                        break;
-
-                    case 'Polygon':
-                        this.renderPolygon(child);
-                        break;
-                }
-            });
-        }
     }
 
     render() {
