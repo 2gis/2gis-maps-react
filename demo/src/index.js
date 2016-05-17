@@ -1,7 +1,7 @@
 import React, { Component, Children, cloneElement } from 'react'
 import { render } from 'react-dom'
 
-import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline } from '../../src'
+import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline, Polygon } from '../../src'
 
 class ExampleMap extends Component {
     echoLatlng(e) {
@@ -93,6 +93,18 @@ class ExampleMap extends Component {
                             "opacity": 0.45
                          }}
                 />
+
+                <Polygon points={[
+                                    [55.022511774575335, 82.91553497314455],
+                                    [55.0114888249396, 82.89253234863283],
+                                    [54.98864593043392, 82.95879364013673],
+                                    [55.012079416926845, 82.96840667724611]
+                                ]}
+                >
+                    <Popup>
+                        <p>Polygon popup</p>
+                    </Popup>
+                </Polygon>
 
             </Map>
         );

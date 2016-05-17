@@ -130,6 +130,22 @@ export default class Map extends Component {
         DG.polyline(child.props.points, child.props.style || null).addTo(this.state.Map);
     }
 
+    renderPolygon(child) {
+        let dgElementPolygon = DG.polygon(child.props.points);
+
+        if (child.props.style) {
+            dgElementPolygon.setStyle(child.props.style);
+        }
+
+        if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
+            let popupChild = cloneElement(child.props.children, {pos: child.props.pos});
+
+            this.renderPopup(popupChild, dgElementPolygon);
+        }
+
+        dgElementPolygon.addTo(this.state.Map);
+    }
+
     renderMap() {
         if (this.state.Map) {
             Children.toArray(this.props.children).forEach(child => {
@@ -139,7 +155,7 @@ export default class Map extends Component {
                         break;
 
                     case 'Popup':
-                        this.renderPopup(child, this.state.Map);
+                        this.renderPopup(child);
                         break;
 
                     case 'Ruler':
@@ -160,6 +176,10 @@ export default class Map extends Component {
 
                     case 'Polyline':
                         this.renderPolyline(child);
+                        break;
+
+                    case 'Polygon':
+                        this.renderPolygon(child);
                         break;
                 }
             });
