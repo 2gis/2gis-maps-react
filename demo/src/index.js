@@ -1,5 +1,5 @@
 import React, { Component, Children, cloneElement } from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 
 import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline, Polygon } from '../../src'
 
@@ -129,6 +129,6 @@ const dgUrl = 'http://maps.api.2gis.ru/2.0/loader.js?pkg=full';
 getScript(dgUrl, () => {
     DG.then(() => {
         const domElement = document.querySelector('#demo');
-        render(<ExampleMap/>, domElement);
+        ReactDOM.render(<ExampleMap/>, domElement);
     });
 });

@@ -1,11 +1,9 @@
-import Map from './Map.js';
-import Marker from './Marker.js';
-import Popup from './Popup.js';
-import Ruler from './Ruler.js';
-import GeoJSON from './GeoJSON.js';
-import Wkt from './Wkt.js';
-import Circle from './Circle.js';
-import Polyline from './Polyline.js';
-import Polygon from './Polygon.js';
-
-export default { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline, Polygon };
+export Map from './Map.js';
+export Marker from './Marker.js';
+export Popup from './Popup.js';
+export Ruler from './Ruler.js';
+export GeoJSON from './GeoJSON.js';
+export Wkt from './Wkt.js';
+export Circle from './Circle.js';
+export Polyline from './Polyline.js';
+export Polygon from './Polygon.js';

@@ -1,6 +1,5 @@
 import React, { Component, Children, PropTypes, cloneElement } from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { render } from 'react-dom';
 
 export default class Map extends Component {
     static propsTypes = {
