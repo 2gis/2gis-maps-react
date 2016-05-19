@@ -58,20 +58,24 @@ export default class Map extends Component {
     }
 
     renderMarker(child) {
-        let dgElementMarker = DG.marker(child.props.pos).addTo(this.state.Map);
+        let dgElement = DG.marker(child.props.pos).addTo(this.state.Map);
 
         if (child.props.label) {
-            dgElementMarker.bindLabel(child.props.label.text, { static: child.props.label.static || false })
+            dgElement.bindLabel(child.props.label);
+        }
+
+        if (child.props.staticLabel) {
+            dgElement.bindLabel(child.props.staticLabel, { static: true });
         }
 
         if (child.props.onClick) {
-            dgElementMarker.on('click', e => child.props.onClick.call(this, e));
+            dgElement.on('click', e => child.props.onClick.call(this, e));
         }
 
         if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
             let popupChild = cloneElement(child.props.children, {pos: child.props.pos});
 
-            this.renderPopup(popupChild, dgElementMarker);
+            this.renderPopup(popupChild, dgElement);
         }
     }
 
@@ -84,19 +88,19 @@ export default class Map extends Component {
             }}>{ child.props.children }</div>
         );
 
-        let dgElementPopup = null;
+        let dgElement = null;
 
         if (!element || element._leaflet_id == this.state.Map._leaflet_id) {
-            dgElementPopup = DG.popup()
+            dgElement = DG.popup()
                 .setLatLng(child.props.pos)
                 .setContent(popupHtml)
                 .openOn(this.state.Map);
         } else {
-            dgElementPopup = element.bindPopup(popupHtml)._popup;
+            dgElement = element.bindPopup(popupHtml)._popup;
         }
 
         if (child.props.onClick) {
-            dgElementPopup.on('click', e => child.props.onClick.call(this, e));
+            dgElement.on('click', e => child.props.onClick.call(this, e));
         }
     }
 
@@ -120,39 +124,101 @@ export default class Map extends Component {
     }
 
     renderCircle(child) {
-        let dgElementCircle = DG.circle(child.props.pos, child.props.radius);
+        let dgElement = DG.circle(child.props.pos, child.props.radius);
 
         if (child.props.style) {
-            dgElementCircle.setStyle(child.props.style);
+            dgElement.setStyle(child.props.style);
+        }
+
+        if (child.props.label) {
+            dgElement.bindLabel(child.props.label)
         }
 
         if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
-            let popupChild = cloneElement(child.props.children, {pos: child.props.pos});
+            let children = cloneElement(child.props.children, {pos: child.props.pos});
 
-            this.renderPopup(popupChild, dgElementCircle);
+            this.renderPopup(children, dgElement);
         }
 
-        dgElementCircle.addTo(this.state.Map);
+        dgElement.addTo(this.state.Map);
+    }
+
+    renderCircleMarker(child) {
+        let dgElement = DG.circleMarker(child.props.pos);
+
+        if (child.props.style) {
+            dgElement.setStyle(child.props.style);
+        }
+
+        if (child.props.label) {
+            dgElement.bindLabel(child.props.label)
+        }
+
+        if (child.props.radius) {
+            dgElement.setRadius(child.props.radius);
+        }
+
+        if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
+            let children = cloneElement(child.props.children, {pos: child.props.pos});
+
+            this.renderPopup(children, dgElement);
+        }
+
+        dgElement.addTo(this.state.Map);
     }
 
     renderPolyline(child) {
-        DG.polyline(child.props.points, child.props.style || null).addTo(this.state.Map);
+        let dgElement = DG.polyline(child.props.points, child.props.style || null);
+
+        if (child.props.label) {
+            dgElement.bindLabel(child.props.label)
+        }
+
+        dgElement.addTo(this.state.Map);
     }
 
     renderPolygon(child) {
-        let dgElementPolygon = DG.polygon(child.props.points);
+        let dgElement = DG.polygon(child.props.points);
 
         if (child.props.style) {
-            dgElementPolygon.setStyle(child.props.style);
+            dgElement.setStyle(child.props.style);
+        }
+
+        if (child.props.label) {
+            dgElement.bindLabel(child.props.label)
         }
 
         if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
-            let popupChild = cloneElement(child.props.children, {pos: child.props.pos});
+            let children = cloneElement(child.props.children, {pos: child.props.pos});
 
-            this.renderPopup(popupChild, dgElementPolygon);
+            this.renderPopup(children, dgElement);
         }
 
-        dgElementPolygon.addTo(this.state.Map);
+        dgElement.addTo(this.state.Map);
+    }
+
+    renderRectangle(child) {
+        let dgElement = DG.rectangle(child.props.pos);
+
+        if (child.props.style) {
+            dgElement.setStyle(child.props.style);
+        }
+
+        if (child.props.label) {
+            dgElement.bindLabel(child.props.label)
+        }
+
+        if (child.props.radius) {
+            dgElement.setRadius(child.props.radius);
+        }
+
+        if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
+            let children = cloneElement(child.props.children, {pos: child.props.pos});
+
+            this.renderPopup(children, dgElement);
+        }
+
+        dgElement.addTo(this.state.Map);
     }
 
     render() {

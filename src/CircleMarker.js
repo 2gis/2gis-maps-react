@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class Polyline extends Component {
+export default class CircleMarker extends Component {
     static propsTypes = {
         style: PropTypes.object,
-        points: PropTypes.array,
-        label: PropTypes.string
+        pos: PropTypes.array,
+        radius: PropTypes.number,
+        label: PropTypes.object
     };
     render() {
         return <noscript></noscript>;

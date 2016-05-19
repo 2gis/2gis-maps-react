@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class Polyline extends Component {
+export default class Rectangle extends Component {
     static propsTypes = {
         style: PropTypes.object,
-        points: PropTypes.array,
+        pos: PropTypes.array,
         label: PropTypes.string
     };
     render() {

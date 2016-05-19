@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { render, findDOMNode } from 'react-dom'
 
 export default class Ruler extends Component {
     static propsTypes = {

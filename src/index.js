@@ -5,5 +5,7 @@ export Ruler from './Ruler.js';
 export GeoJSON from './GeoJSON.js';
 export Wkt from './Wkt.js';
 export Circle from './Circle.js';
+export CircleMarker from './CircleMarker.js';
 export Polyline from './Polyline.js';
 export Polygon from './Polygon.js';
+export Rectangle from './Rectangle.js';

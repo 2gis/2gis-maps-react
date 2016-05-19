@@ -1,7 +1,7 @@
 import React, { Component, Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
 
-import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline, Polygon } from '../../src'
+import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline, Polygon, CircleMarker, Rectangle } from '../../src'
 
 class ExampleMap extends Component {
     echoLatlng(e) {
@@ -31,11 +31,11 @@ class ExampleMap extends Component {
 
                 <Marker
                     pos={[54.98, 82.9]}
-                    label={{text: 'I\'m marker with static label.', static: true}}
+                    staticLabel={'I\'m marker with static label.'}
                     onClick={e => console.log(e)}
                 />
 
-                <Marker pos={[54.96, 82.91]} label={{text: 'I\'m marker.'}}/>
+                <Marker pos={[54.96, 82.91]} label={'I\'m marker.'}/>
 
                 <Popup pos={[54.96, 82.9]} onClick={e => console.log(e)}>
                     <h2>Vestibulum eu odio.</h2>
@@ -93,6 +93,7 @@ class ExampleMap extends Component {
                             "weight": 8,
                             "opacity": 0.45
                          }}
+                          label={'I\'m line.'}
                 />
 
                 <Polygon points={[
@@ -101,11 +102,23 @@ class ExampleMap extends Component {
                                     [54.98864593043392, 82.95879364013673],
                                     [55.012079416926845, 82.96840667724611]
                                 ]}
+                         label={'I\'m polygon.'}
                 >
                     <Popup>
                         <p>Polygon popup</p>
                     </Popup>
                 </Polygon>
+
+                <CircleMarker pos={[54.99, 82.9]} radius={20}/>
+
+                <Rectangle
+                    pos={[[54.95731, 82.87261], [54.947, 82.92]]}
+                    label={'I\'m rectangle.'}
+                >
+                    <Popup>
+                        <p>Rectangle popup</p>
+                    </Popup>
+                </Rectangle>
 
             </Map>
         );
