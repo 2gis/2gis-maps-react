@@ -26,10 +26,11 @@ export default class Map extends Component {
             geoclicker: this.props.geoClicker || false,
             projectDetector: this.props.projectDetector || false,
             zoomControl: this.props.zoomControl || true,
-            fullscreenControl: this.props.fullscreenControl || true
+            fullscreenControl: this.props.fullscreenControl || true,
+            preferCanvas: this.props.preferCanvas || false
         };
 
-        const Map = DG.map(container, options);
+        let Map = DG.map(container, options);
 
         if (this.props.onClick) {
             Map.on('click', e => this.props.onClick.call(this, e));

@@ -14,6 +14,7 @@ class ExampleMap extends Component {
                 center={[54.98, 82.89]}
                 zoom={12}
                 onClick={this.echoLatlng}
+                preferCanvas={true}
             >
                 <Marker pos={[54.98, 82.89]}>
                     <Popup>
