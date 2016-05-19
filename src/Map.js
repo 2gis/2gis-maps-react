@@ -10,7 +10,12 @@ export default class Map extends Component {
         geoClicker: PropTypes.bool,
         projectDetector: PropTypes.bool,
         zoomControl: PropTypes.bool,
-        fullscreenControl: PropTypes.bool
+        fullscreenControl: PropTypes.bool,
+        preferCanvas: PropTypes.bool,
+        touchZoom: PropTypes.bool,
+        scrollWheelZoom: PropTypes.bool,
+        doubleClickZoom: PropTypes.bool,
+        dragging: PropTypes.bool
     };
 
     state = {
@@ -25,9 +30,13 @@ export default class Map extends Component {
             center: this.props.center,
             geoclicker: this.props.geoClicker || false,
             projectDetector: this.props.projectDetector || false,
-            zoomControl: this.props.zoomControl || true,
-            fullscreenControl: this.props.fullscreenControl || true,
-            preferCanvas: this.props.preferCanvas || false
+            zoomControl: this.props.zoomControl != undefined ? this.props.zoomControl : true,
+            fullscreenControl: this.props.fullscreenControl != undefined ? this.props.fullscreenControl : true,
+            preferCanvas: this.props.preferCanvas != undefined ? this.props.preferCanvas : true,
+            touchZoom: this.props.touchZoom != undefined ? this.props.touchZoom : true,
+            scrollWheelZoom: this.props.scrollWheelZoom != undefined ? this.props.scrollWheelZoom : true,
+            doubleClickZoom: this.props.doubleClickZoom != undefined ? this.props.doubleClickZoom : true,
+            dragging: this.props.dragging != undefined ? this.props.dragging : true
         };
 
         let Map = DG.map(container, options);
