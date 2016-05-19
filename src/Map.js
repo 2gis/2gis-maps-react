@@ -1,5 +1,6 @@
 import React, { Component, Children, PropTypes, cloneElement } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import DG from '2gis-maps';
 
 export default class Map extends Component {
     static propsTypes = {

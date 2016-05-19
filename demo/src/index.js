@@ -111,9 +111,10 @@ class ExampleMap extends Component {
     }
 }
 
-const getScript = (src, callback) => {
-    let s = document.createElement('script');
-    s.src = src;
+const getStyle = (src, callback) => {
+    let s = document.createElement('link');
+    s.rel = 'stylesheet';
+    s.href = src;
     s.async = true;
     s.onreadystatechange = s.onload = () => {
         if (!callback.done && (!s.readyState || /loaded|complete/.test(s.readyState))) {
@@ -124,11 +125,9 @@ const getScript = (src, callback) => {
     document.querySelector('head').appendChild(s);
 };
 
-const dgUrl = 'http://maps.api.2gis.ru/2.0/loader.js?pkg=full';
+const dgUrl = 'https://maps.api.2gis.ru/2.0/css?pkg=full&skin=dark';
 
-getScript(dgUrl, () => {
-    DG.then(() => {
-        const domElement = document.querySelector('#demo');
-        ReactDOM.render(<ExampleMap/>, domElement);
-    });
+getStyle(dgUrl, () => {
+    const domElement = document.querySelector('#demo');
+    ReactDOM.render(<ExampleMap/>, domElement);
 });
