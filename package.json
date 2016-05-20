@@ -17,16 +17,15 @@
     "test": "nwb test",
     "test:watch": "nwb test --server"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "0.14.x"
   },
   "devDependencies": {
+    "2gis-maps": "^2.2.5",
     "nwb": "0.9.x",
     "react": "0.14.x",
-    "react-dom": "0.14.x",
-    "2gis-maps": "^2.2.4"
+    "react-dom": "0.14.x"
   },
   "author": "",
   "homepage": "",

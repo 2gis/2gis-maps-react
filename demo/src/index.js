@@ -124,23 +124,5 @@ class ExampleMap extends Component {
     }
 }
 
-const getStyle = (src, callback) => {
-    let s = document.createElement('link');
-    s.rel = 'stylesheet';
-    s.href = src;
-    s.async = true;
-    s.onreadystatechange = s.onload = () => {
-        if (!callback.done && (!s.readyState || /loaded|complete/.test(s.readyState))) {
-            callback.done = true;
-            callback();
-        }
-    };
-    document.querySelector('head').appendChild(s);
-};
-
-const dgUrl = 'https://maps.api.2gis.ru/2.0/css?pkg=full&skin=dark';
-
-getStyle(dgUrl, () => {
-    const domElement = document.querySelector('#demo');
-    ReactDOM.render(<ExampleMap/>, domElement);
-});
+const domElement = document.getElementById('demo');
+ReactDOM.render(<ExampleMap/>, domElement);
