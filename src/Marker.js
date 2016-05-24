@@ -7,10 +7,12 @@ export default class Marker extends Component {
         onDrag: PropTypes.func,
         label: PropTypes.string,
         staticLabel: PropTypes.string,
-        draggable: PropTypes.bool
+        draggable: PropTypes.bool,
+        clickable: PropTypes.bool
     };
     static defaultProps = {
-        draggable: false
+        draggable: false,
+        clickable: true
     };
     render() {
         return <noscript></noscript>;

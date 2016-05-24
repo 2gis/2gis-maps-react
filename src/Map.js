@@ -105,7 +105,8 @@ export default class Map extends Component {
 
     renderMarker(child) {
         let dgElement = DG.marker(child.props.pos, {
-            draggable: child.props.draggable
+            draggable: child.props.draggable,
+            clickable: child.props.clickable
         }).addTo(this.state.Map);
 
         if (child.props.label) {
