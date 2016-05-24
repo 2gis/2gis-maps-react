@@ -1,7 +1,10 @@
 import React, { Component, Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
 
-import { Map, Marker, Popup, Ruler, GeoJSON, Wkt, Circle, Polyline, Polygon, CircleMarker, Rectangle } from '../../src'
+import {
+    Map, Marker, Popup, Icon, DivIcon, Ruler, GeoJSON,
+    Wkt, Circle, Polyline, Polygon, CircleMarker, Rectangle
+} from '../../src'
 
 class ExampleMap extends Component {
     echoLatlng(e) {
@@ -25,6 +28,10 @@ class ExampleMap extends Component {
                 </Marker>
 
                 <Marker pos={[54.98, 82.86]}>
+                    <Icon
+                        iconSize={[48, 48]}
+                        iconUrl={'http://maps.api.2gis.ru/2.0/example_logo.png'}
+                    />
                     <Popup onClick={e => console.log(e)}>
                         <h2>Vestibulum eu odio.</h2>
                     </Popup>
@@ -36,7 +43,17 @@ class ExampleMap extends Component {
                     onClick={e => console.log(e)}
                 />
 
-                <Marker pos={[54.96, 82.91]} label={'I\'m marker.'} draggable={true}/>
+                <Marker pos={[54.96, 82.91]} label={'I\'m marker.'} draggable={true}>
+                    <DivIcon iconSize={[48, 35]} >
+                        <p style={
+                            {
+                                background: 'green',
+                                padding: 0,
+                                margin: 0
+                            }
+                        }>HTML ICON</p>
+                    </DivIcon>
+                </Marker>
 
                 <Popup pos={[54.96, 82.9]} onClick={e => console.log(e)}>
                     <h2>Vestibulum eu odio.</h2>

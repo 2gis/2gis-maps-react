@@ -128,11 +128,45 @@ export default class Map extends Component {
             dgElement.on('drag', e => child.props.onDrag.call(this, e));
         }
 
-        if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
-            let popupChild = cloneElement(child.props.children, {pos: child.props.pos});
+        if (Children.count(child.props.children) > 0) {
+            Children.toArray(child.props.children).forEach(child => {
+                const name = child.type.name || child.type;
+                const allowedNames = ['Popup', 'Icon', 'DivIcon'];
 
-            this.renderPopup(popupChild, dgElement);
+                if (typeof allowedNames.indexOf(name) != 'undefined') {
+                    this['render' + name](name == 'Popup' ? cloneElement(child, {pos: child.props.pos}) : child, dgElement);
+                }
+                else {
+                    console.error('Component \'' + name + '\' not allowed inside Marker.');
+                }
+            });
         }
+    }
+
+    renderIcon(child, element) {
+        let icon = DG.icon({
+            iconUrl: child.props.iconUrl,
+            iconSize: child.props.iconSize
+        });
+
+        element.setIcon(icon);
+    }
+
+    renderDivIcon(child, element) {
+        const iconHtml = ReactDOMServer.renderToString(
+            <div style={{
+                padding: 0,
+                margin: 0,
+                display: 'inline'
+            }}>{ child.props.children }</div>
+        );
+
+        let icon = DG.divIcon({
+            iconSize: child.props.iconSize,
+            html: iconHtml
+        });
+
+        element.setIcon(icon);
     }
 
     renderPopup(child, element) {
