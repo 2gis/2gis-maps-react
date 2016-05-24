@@ -13,6 +13,8 @@ class ExampleMap extends Component {
                 style={{width: "500px", height: "500px"}}
                 center={[54.98, 82.89]}
                 zoom={12}
+                maxZoom={16}
+                minZoom={10}
                 onClick={this.echoLatlng}
             >
                 <Marker pos={[54.98, 82.89]}>
@@ -34,7 +36,7 @@ class ExampleMap extends Component {
                     onClick={e => console.log(e)}
                 />
 
-                <Marker pos={[54.96, 82.91]} label={'I\'m marker.'}/>
+                <Marker pos={[54.96, 82.91]} label={'I\'m marker.'} draggable={true}/>
 
                 <Popup pos={[54.96, 82.9]} onClick={e => console.log(e)}>
                     <h2>Vestibulum eu odio.</h2>

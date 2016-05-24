@@ -7,7 +7,7 @@ export default class Map extends Component {
         style: PropTypes.object,
         center: PropTypes.array,
         zoom: PropTypes.number,
-        geoClicker: PropTypes.bool,
+        geoclicker: PropTypes.bool,
         projectDetector: PropTypes.bool,
         zoomControl: PropTypes.bool,
         fullscreenControl: PropTypes.bool,
@@ -15,7 +15,27 @@ export default class Map extends Component {
         touchZoom: PropTypes.bool,
         scrollWheelZoom: PropTypes.bool,
         doubleClickZoom: PropTypes.bool,
-        dragging: PropTypes.bool
+        dragging: PropTypes.bool,
+        onClick: PropTypes.func,
+        onProjectChange: PropTypes.func,
+        onProjectLeave: PropTypes.func,
+        maxBounds: PropTypes.array,
+        minZoom: PropTypes.number,
+        maxZoom: PropTypes.number
+    };
+
+    static defaultProps = {
+        zoom: false,
+        center: false,
+        geoclicker: false,
+        projectDetector: false,
+        zoomControl: true,
+        fullscreenControl: true,
+        preferCanvas: true,
+        touchZoom: true,
+        scrollWheelZoom: true,
+        doubleClickZoom: true,
+        dragging: true
     };
 
     state = {
@@ -25,24 +45,41 @@ export default class Map extends Component {
     componentDidMount() {
         const { container } = this.refs;
 
+        // Map options.
+        const {
+            zoom, center, geoclicker, projectDetector, zoomControl, fullscreenControl, preferCanvas, touchZoom,
+            scrollWheelZoom, doubleClickZoom, dragging, maxBounds, minZoom, maxZoom
+        } = this.props;
+
         let options = {
-            zoom: this.props.zoom,
-            center: this.props.center,
-            geoclicker: this.props.geoClicker || false,
-            projectDetector: this.props.projectDetector || false,
-            zoomControl: this.props.zoomControl != undefined ? this.props.zoomControl : true,
-            fullscreenControl: this.props.fullscreenControl != undefined ? this.props.fullscreenControl : true,
-            preferCanvas: this.props.preferCanvas != undefined ? this.props.preferCanvas : true,
-            touchZoom: this.props.touchZoom != undefined ? this.props.touchZoom : true,
-            scrollWheelZoom: this.props.scrollWheelZoom != undefined ? this.props.scrollWheelZoom : true,
-            doubleClickZoom: this.props.doubleClickZoom != undefined ? this.props.doubleClickZoom : true,
-            dragging: this.props.dragging != undefined ? this.props.dragging : true
+            zoom, center, geoclicker, projectDetector, zoomControl, fullscreenControl, preferCanvas, touchZoom,
+            scrollWheelZoom, doubleClickZoom, dragging, maxBounds, minZoom, maxZoom
         };
 
+        // Check exist prop center.
+        if (!center) {
+            console.error('For initial map You should set prop \'center\'.');
+        }
+
+        // Check exist zoom center.
+        if (!zoom) {
+            console.error('For initial map You should set prop \'zoom\'.');
+        }
+
+        // Create Map.
         let Map = DG.map(container, options);
 
+        // Map events.
         if (this.props.onClick) {
             Map.on('click', e => this.props.onClick.call(this, e));
+        }
+
+        if (this.props.onProjectChange) {
+            Map.on('projectchange', e => this.props.onProjectChange.call(this, e));
+        }
+
+        if (this.props.onProjectLeave) {
+            Map.on('projectleave', e => this.props.onProjectLeave.call(this, e));
         }
 
         this.setState({
@@ -57,7 +94,7 @@ export default class Map extends Component {
             }
             else {
                 const name = child.type.name || child.type;
-                console.error('Component ' + name + ' not allowed inside Map.');
+                console.error('Component \'' + name + '\' not allowed inside Map.');
             }
         });
     }
@@ -67,7 +104,9 @@ export default class Map extends Component {
     }
 
     renderMarker(child) {
-        let dgElement = DG.marker(child.props.pos).addTo(this.state.Map);
+        let dgElement = DG.marker(child.props.pos, {
+            draggable: child.props.draggable
+        }).addTo(this.state.Map);
 
         if (child.props.label) {
             dgElement.bindLabel(child.props.label);
@@ -79,6 +118,14 @@ export default class Map extends Component {
 
         if (child.props.onClick) {
             dgElement.on('click', e => child.props.onClick.call(this, e));
+        }
+
+        if (child.props.onClick) {
+            dgElement.on('click', e => child.props.onClick.call(this, e));
+        }
+
+        if (child.props.onDrag) {
+            dgElement.on('drag', e => child.props.onDrag.call(this, e));
         }
 
         if (Children.count(child.props.children) == 1 && child.props.children.type.name == 'Popup') {
