@@ -130,7 +130,7 @@ class ExampleMap extends Component {
                 <CircleMarker pos={[54.99, 82.9]} radius={20}/>
 
                 <Rectangle
-                    pos={[[54.95731, 82.87261], [54.947, 82.92]]}
+                    bounds={[[54.95731, 82.87261], [54.947, 82.92]]}
                     label={'I\'m rectangle.'}
                 >
                     <Popup>
