@@ -47,7 +47,7 @@ export default class Marker extends MapComponent {
             dgElement: dgElement
         });
 
-        // todo: fit it after close https://github.com/2gis/mapsapi/issues/332
+        // todo: fix it after close https://github.com/2gis/mapsapi/issues/332
         if (this.props.staticLabel) {
             this.props.element.addLayer(dgElement);
 
@@ -58,7 +58,34 @@ export default class Marker extends MapComponent {
         }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
+        const { dgElement } = this.state;
 
+        // Update pos.
+        if (prevProps.pos != this.props.pos) {
+            dgElement.setLatLng(DG.latLng(this.props.pos));
+        }
+
+        // Update label.
+        if (prevProps.label != this.props.label) {
+            dgElement.bindLabel(this.props.label);
+        }
+
+        // Update static label.
+        if (prevProps.staticLabel != this.props.staticLabel) {
+            dgElement.bindLabel(this.props.staticLabel, { 'static': true });
+        }
+
+        // Update draggable.
+        if (prevProps.draggable != this.props.draggable) {
+            dgElement.options.draggable = this.props.draggable;
+            dgElement.update();
+        }
+
+        // Update clickable.
+        if (prevProps.clickable != this.props.clickable) {
+            dgElement.options.clickable = this.props.clickable;
+            dgElement.update();
+        }
     }
 }
