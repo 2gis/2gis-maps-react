@@ -22,14 +22,43 @@ export default class Marker extends MapComponent {
 
     state = {
         dgElement: null,
-        childrenForRender: []
+        childrenForRender: [],
+        pos: DG.latLng(this.props.pos) || null
     };
+
+    dragging(e) {
+        this.setState({
+            dgElement: this.state.dgElement,
+            childrenForRender: this.state.childrenForRender,
+            pos: e.latlng
+        });
+    }
+
+    draggingSwitchTo(isEnable) {
+        const { dgElement } = this.state;
+        const self = this;
+
+        if (isEnable) {
+            dgElement.on('drag', e => self.dragging.call(self, e));
+            dgElement.dragging.enable();
+        }
+        else {
+            dgElement.off('drag', e => self.dragging.call(self, e));
+            dgElement.dragging.disable();
+            dgElement.setLatLng(this.state.pos);
+        }
+    }
 
     componentDidMount() {
         let dgElement = DG.marker(this.props.pos, {
             draggable: this.props.draggable,
             clickable: this.props.clickable
         });
+
+        // For dragging Marker.
+        if (this.props.draggable) {
+            this.draggingSwitchTo(true);
+        }
 
         if (this.props.label) {
             dgElement.bindLabel(this.props.label);
@@ -47,7 +76,8 @@ export default class Marker extends MapComponent {
             dgElement: dgElement
         });
 
-        // todo: fix it after close https://github.com/2gis/mapsapi/issues/332
+        // todo: fix it after fix https://github.com/2gis/mapsapi/issues/332
+
         if (this.props.staticLabel) {
             this.props.element.addLayer(dgElement);
 
@@ -63,7 +93,7 @@ export default class Marker extends MapComponent {
 
         // Update pos.
         if (prevProps.pos != this.props.pos) {
-            dgElement.setLatLng(DG.latLng(this.props.pos));
+            dgElement.setLatLng(DG.latLng(this.state.pos));
         }
 
         // Update label.
@@ -78,14 +108,7 @@ export default class Marker extends MapComponent {
 
         // Update draggable.
         if (prevProps.draggable != this.props.draggable) {
-            dgElement.options.draggable = this.props.draggable;
-            dgElement.update();
-        }
-
-        // Update clickable.
-        if (prevProps.clickable != this.props.clickable) {
-            dgElement.options.clickable = this.props.clickable;
-            dgElement.update();
+            this.draggingSwitchTo(this.props.draggable);
         }
     }
 }

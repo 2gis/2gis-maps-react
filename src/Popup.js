@@ -9,26 +9,68 @@ export default class Popup extends MapComponent {
         onClick: PropTypes.func
     };
 
-    componentDidMount() {
-        const popupHtml = ReactDOMServer.renderToString(
+    state = {
+        dgElement: null
+    };
+
+    insideMap() {
+        return !!this.props.element.options.zoom
+    }
+
+    componentWillUnmount() {
+        this.props.element.unbindPopup();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        let { element } = this.props;
+
+        if (prevProps.children != this.props.children) {
+            const popupHtml = this.renderChildren();
+
+            if (this.insideMap()) {
+                element._popup.setContent(popupHtml)
+            }
+            else {
+                element.setPopupContent(popupHtml);
+            }
+        }
+
+        if (prevProps.pos != this.props.pos && this.insideMap()) {
+            element._popup.setLatLng(DG.latLng(this.props.pos));
+        }
+    }
+
+    renderChildren() {
+        return ReactDOMServer.renderToString(
             <div style={{
                 padding: 0,
                 margin: 0,
                 display: 'inline'
             }}>{ this.props.children }</div>
         );
+    }
 
-        let element = this.props.element;
+    componentDidMount() {
+        const popupHtml = this.renderChildren();
+
+        let { element } = this.props;
 
         let dgElement = null;
 
-        if (element.options.zoom) {
+        if (this.insideMap()) {
             dgElement = DG.popup()
                 .setLatLng(this.props.pos)
                 .setContent(popupHtml)
                 .openOn(element);
         } else {
-            dgElement = element.bindPopup(popupHtml)._popup;
+            if (element.getPopup()) {
+                element.setPopupContent(popupHtml);
+            }
+            else {
+                element.bindPopup(popupHtml);
+            }
+
+            dgElement = element.getPopup()
         }
 
         if (this.props.onClick) {

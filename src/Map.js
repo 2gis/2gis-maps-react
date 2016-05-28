@@ -92,10 +92,6 @@ export default class Map extends MapComponent {
 
     }
 
-    componentWillUnmount() {
-        this.state.dgElement.remove();
-    }
-
     render() {
         return (
             <div ref="container" style={this.props.style}>

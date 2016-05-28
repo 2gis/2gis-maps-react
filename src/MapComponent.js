@@ -1,6 +1,12 @@
 import React, { Component, Children, cloneElement } from 'react'
 
 export default class MapComponent extends Component {
+    componentWillUnmount() {
+        if (this.state && this.state.dgElement) {
+            this.state.dgElement.remove();
+        }
+    }
+
     render() {
         let childrenForRender = [];
 
