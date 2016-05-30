@@ -7,6 +7,17 @@ export default class MapComponent extends Component {
         }
     }
 
+    checkPropsChange(propsName, prevProps) {
+        if (typeof propsName == 'string') {
+            return prevProps[propsName] === this.props[propsName];
+        }
+        else if (typeof propsName == 'object') {
+            propsName.some(name => {
+                return prevProps[name] === this.props[name]
+            });
+        }
+    }
+
     render() {
         let childrenForRender = [];
 

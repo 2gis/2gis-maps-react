@@ -88,8 +88,20 @@ export default class Map extends MapComponent {
         });
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
+        const { dgElement } = this.state;
 
+        if (!this.checkPropsChange('center', prevProps)) {
+            dgElement.setView(this.props.center);
+        }
+
+        if (!this.checkPropsChange('zoom', prevProps)) {
+            dgElement.setZoom(this.props.zoom);
+        }
+
+        if (!this.checkPropsChange('style', prevProps)) {
+            dgElement.invalidateSize();
+        }
     }
 
     render() {
