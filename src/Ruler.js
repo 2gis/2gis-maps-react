@@ -11,22 +11,17 @@ export default class Ruler extends MapComponent {
         dgElement: {}
     };
 
-    renderRuler() {
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.points != this.props.points) {
+            this.state.dgElement.setLatLngs(this.props.points);
+        }
+    }
+
+    componentDidMount() {
         let dgElement = DG.ruler(this.props.points);
         this.props.element.addLayer(dgElement);
         this.setState({
             dgElement: dgElement
         });
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if(prevProps.points != this.props.points) {
-            this.state.dgElement.remove();
-            this.renderRuler();
-        }
-    }
-
-    componentDidMount() {
-        this.renderRuler();
     }
 }
