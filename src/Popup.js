@@ -9,10 +9,6 @@ export default class Popup extends MapComponent {
         onClick: PropTypes.func
     };
 
-    state = {
-        dgElement: null
-    };
-
     insideMap() {
         return !!this.props.element.options.zoom
     }

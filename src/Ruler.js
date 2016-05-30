@@ -7,8 +7,26 @@ export default class Ruler extends MapComponent {
         points: PropTypes.array
     };
 
-    componentDidMount() {
+    state = {
+        dgElement: {}
+    };
+
+    renderRuler() {
         let dgElement = DG.ruler(this.props.points);
         this.props.element.addLayer(dgElement);
+        this.setState({
+            dgElement: dgElement
+        });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.points != this.props.points) {
+            this.state.dgElement.remove();
+            this.renderRuler();
+        }
+    }
+
+    componentDidMount() {
+        this.renderRuler();
     }
 }
