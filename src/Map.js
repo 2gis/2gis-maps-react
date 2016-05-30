@@ -91,15 +91,15 @@ export default class Map extends MapComponent {
     componentDidUpdate(prevProps, prevState) {
         const { dgElement } = this.state;
 
-        if (!this.checkPropsChange('center', prevProps)) {
+        if (this.checkPropsChange('center', prevProps)) {
             dgElement.setView(this.props.center);
         }
 
-        if (!this.checkPropsChange('zoom', prevProps)) {
+        if (this.checkPropsChange('zoom', prevProps)) {
             dgElement.setZoom(this.props.zoom);
         }
 
-        if (!this.checkPropsChange('style', prevProps)) {
+        if (this.checkPropsChange('style', prevProps)) {
             dgElement.invalidateSize();
         }
     }

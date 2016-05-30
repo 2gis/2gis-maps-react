@@ -8,7 +8,7 @@ export default class Ruler extends MapComponent {
     };
 
     state = {
-        dgElement: {}
+        dgElement: null
     };
 
     componentDidUpdate(prevProps, prevState) {

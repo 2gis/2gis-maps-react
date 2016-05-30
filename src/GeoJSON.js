@@ -5,7 +5,10 @@ import MapComponent from './MapComponent'
 export default class GeoJSON extends MapComponent {
     static propsTypes = {
         data: PropTypes.object,
-        onEachFeature: PropTypes.func
+        style: PropTypes.object,
+        pointToLayer: PropTypes.func,
+        onEachFeature: PropTypes.func,
+        filter: PropTypes.func
     };
 
     static defaultProps = {
@@ -15,7 +18,11 @@ export default class GeoJSON extends MapComponent {
         filter: null
     };
 
-    componentDidMount() {
+    state = {
+        dgElement: null
+    };
+
+    renderGeoJSON() {
         let options = {
             style: this.props.style,
             pointToLayer: this.props.pointToLayer,
@@ -23,7 +30,25 @@ export default class GeoJSON extends MapComponent {
             filter: this.props.filter
         };
 
+        if (this.state.dgElement) {
+            this.state.dgElement.remove();
+        }
+
         let dgElement = DG.geoJson(this.props.data, options);
         this.props.element.addLayer(dgElement);
+
+        this.setState({
+            dgElement: dgElement
+        });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.checkPropsChange(['data', 'style', 'pointToLayer', 'onEachFeature', 'onEachFeature'], prevProps)) {
+            this.renderGeoJSON();
+        }
+    }
+
+    componentDidMount() {
+        this.renderGeoJSON();
     }
 }
