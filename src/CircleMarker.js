@@ -18,15 +18,15 @@ export default class CircleMarker extends MapComponent {
     componentDidUpdate(prevProps) {
         let { dgElement } = this.state;
 
-        if (this.checkPropsChange('pos', prevProps)) {
-            dgElement.setLatLng(this.props.pos);
-        }
+        this.updatePos(prevProps);
+
         if (this.checkPropsChange('radius', prevProps)) {
             dgElement.setRadius(this.props.radius);
         }
-        if (this.checkPropsChange('style', prevProps)) {
-            dgElement.setStyle(this.props.style);
-        }
+
+        this.updateLabel(prevProps);
+
+        this.updateStyle(prevProps);
     }
 
     componentDidMount() {

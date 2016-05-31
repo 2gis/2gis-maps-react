@@ -32,7 +32,19 @@ export default class Polygon extends MapComponent {
         this.props.element.addLayer(dgElement);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        let { dgElement } = this.state.dgElement;
 
+        if (this.checkPropsChange('points', prevProps)) {
+
+        }
+
+        if (this.checkPropsChange('style', prevProps)) {
+            dgElement.setStyle(this.props.style);
+        }
+
+        if (this.checkPropsChange('label', prevProps)) {
+            dgElement.bindLabel(this.props.label)
+        }
     }
 }

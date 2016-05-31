@@ -9,10 +9,6 @@ export default class Popup extends MapComponent {
         onClick: PropTypes.func
     };
 
-    insideMap() {
-        return !!this.props.element.options.zoom
-    }
-
     componentWillUnmount() {
         this.props.element.unbindPopup();
     }
@@ -31,9 +27,7 @@ export default class Popup extends MapComponent {
             }
         }
 
-        if (prevProps.pos != this.props.pos && this.insideMap()) {
-            element._popup.setLatLng(DG.latLng(this.props.pos));
-        }
+        this.updatePos(prevProps);
     }
 
     renderChildren() {

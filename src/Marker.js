@@ -23,7 +23,7 @@ export default class Marker extends MapComponent {
     state = {
         dgElement: null,
         childrenForRender: [],
-        pos: DG.latLng(this.props.pos) || null
+        pos: this.props.pos || null
     };
 
     dragging(e) {
@@ -77,7 +77,6 @@ export default class Marker extends MapComponent {
         });
 
         // todo: fix it after fix https://github.com/2gis/mapsapi/issues/332
-
         if (this.props.staticLabel) {
             this.props.element.addLayer(dgElement);
 
@@ -88,26 +87,20 @@ export default class Marker extends MapComponent {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         const { dgElement } = this.state;
 
-        // Update pos.
-        if (prevProps.pos != this.props.pos) {
-            dgElement.setLatLng(DG.latLng(this.state.pos));
-        }
+        this.updatePos(prevProps);
 
-        // Update label.
-        if (prevProps.label != this.props.label) {
-            dgElement.bindLabel(this.props.label);
-        }
+        this.updateLabel(prevProps);
 
         // Update static label.
-        if (prevProps.staticLabel != this.props.staticLabel) {
+        if (this.checkPropsChange('staticLabel', prevProps)) {
             dgElement.bindLabel(this.props.staticLabel, { 'static': true });
         }
 
         // Update draggable.
-        if (prevProps.draggable != this.props.draggable) {
+        if (this.checkPropsChange('draggable', prevProps)) {
             this.draggingSwitchTo(this.props.draggable);
         }
     }
