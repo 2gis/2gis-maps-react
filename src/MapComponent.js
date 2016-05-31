@@ -19,31 +19,25 @@ export default class MapComponent extends Component {
     }
 
     updateLabel(prevProps) {
-        let { dgElement } = this.state;
-
         if (this.checkPropsChange('label', prevProps)) {
             if (this.props.label) {
-                dgElement.bindLabel(this.props.label);
+                this.state.dgElement.bindLabel(this.props.label);
             }
             else {
-                dgElement.unbindLabel();
+                this.state.dgElement.unbindLabel();
             }
         }
     }
 
     updatePos(prevProps) {
-        let { dgElement } = this.state;
-
         if (this.checkPropsChange('pos', prevProps)) {
-            dgElement.setLatLng(this.props.pos);
+            this.state.dgElement.setLatLng(this.props.pos);
         }
     }
 
     updateStyle(prevProps) {
-        let { dgElement } = this.state;
-
         if (this.checkPropsChange('style', prevProps)) {
-            dgElement.setStyle(this.props.style);
+            this.state.dgElement.setStyle(this.props.style);
         }
     }
 
