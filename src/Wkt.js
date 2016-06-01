@@ -16,6 +16,16 @@ export default class Wkt extends MapComponent {
         dgElement: null
     };
 
+    componentDidMount() {
+        this.renderWkt();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.checkPropsChange(['data', 'style'], prevProps)) {
+            this.renderWkt();
+        }
+    }
+
     renderWkt() {
         let dgElement = DG.Wkt.geoJsonLayer(this.props.data, this.props.style);
 
@@ -29,15 +39,5 @@ export default class Wkt extends MapComponent {
             dgElement: dgElement
         });
 
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.checkPropsChange(['data', 'style'], prevProps)) {
-            this.renderWkt();
-        }
-    }
-
-    componentDidMount() {
-        this.renderWkt();
     }
 }

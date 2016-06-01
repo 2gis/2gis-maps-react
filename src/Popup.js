@@ -9,37 +9,6 @@ export default class Popup extends MapComponent {
         onClick: PropTypes.func
     };
 
-    componentWillUnmount() {
-        this.props.element.unbindPopup();
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        let { element } = this.props;
-
-        if (prevProps.children != this.props.children) {
-            const popupHtml = this.renderChildren();
-
-            if (this.insideMap()) {
-                element._popup.setContent(popupHtml)
-            }
-            else {
-                element.setPopupContent(popupHtml);
-            }
-        }
-
-        this.updatePos(prevProps);
-    }
-
-    renderChildren() {
-        return ReactDOMServer.renderToString(
-            <div style={{
-                padding: 0,
-                margin: 0,
-                display: 'inline'
-            }}>{ this.props.children }</div>
-        );
-    }
-
     componentDidMount() {
         const popupHtml = this.renderChildren();
 
@@ -66,5 +35,36 @@ export default class Popup extends MapComponent {
         if (this.props.onClick) {
             dgElement.on('click', e => this.props.onClick.call(this, e));
         }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        let { element } = this.props;
+
+        if (prevProps.children != this.props.children) {
+            const popupHtml = this.renderChildren();
+
+            if (this.insideMap()) {
+                element._popup.setContent(popupHtml)
+            }
+            else {
+                element.setPopupContent(popupHtml);
+            }
+        }
+
+        this.updatePos(prevProps);
+    }
+
+    componentWillUnmount() {
+        this.props.element.unbindPopup();
+    }
+
+    renderChildren() {
+        return ReactDOMServer.renderToString(
+            <div style={{
+                padding: 0,
+                margin: 0,
+                display: 'inline'
+            }}>{ this.props.children }</div>
+        );
     }
 }

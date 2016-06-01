@@ -14,12 +14,6 @@ export default class Polygon extends MapComponent {
         childrenForRender: []
     };
 
-    componentDidUpdate(prevProps) {
-        this.updatePoints(prevProps);
-        this.updateLabel(prevProps);
-        this.updateStyle(prevProps);
-    }
-
     componentDidMount() {
         let dgElement = DG.polygon(this.props.points);
 
@@ -36,5 +30,11 @@ export default class Polygon extends MapComponent {
         });
 
         this.props.element.addLayer(dgElement);
+    }
+
+    componentDidUpdate(prevProps) {
+        this.updatePoints(prevProps);
+        this.updateLabel(prevProps);
+        this.updateStyle(prevProps);
     }
 }

@@ -7,6 +7,24 @@ export default class MapComponent extends Component {
         }
     }
 
+    render() {
+        let childrenForRender = [];
+
+        if (this.state && this.state.dgElement && this.props.children ) {
+            childrenForRender = Children.map(this.props.children,
+                child => cloneElement(child, {
+                    element: this.state.dgElement
+                })
+            );
+        }
+
+        return (
+            <noscript>
+                { childrenForRender }
+            </noscript>
+        );
+    }
+
     checkPropsChange(propsName, prevProps) {
         if (typeof propsName == 'string') {
             return prevProps[propsName] !== this.props[propsName];
@@ -49,23 +67,5 @@ export default class MapComponent extends Component {
 
     insideMap() {
         return !!this.props.element.options.zoom
-    }
-
-    render() {
-        let childrenForRender = [];
-
-        if (this.state && this.state.dgElement && this.props.children ) {
-            childrenForRender = Children.map(this.props.children,
-                child => cloneElement(child, {
-                    element: this.state.dgElement
-                })
-            );
-        }
-
-        return (
-            <noscript>
-                { childrenForRender }
-            </noscript>
-        );
     }
 }

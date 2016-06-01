@@ -15,20 +15,6 @@ export default class CircleMarker extends MapComponent {
         childrenForRender: []
     };
 
-    componentDidUpdate(prevProps) {
-        let { dgElement } = this.state;
-
-        this.updatePos(prevProps);
-
-        if (this.checkPropsChange('radius', prevProps)) {
-            dgElement.setRadius(this.props.radius);
-        }
-
-        this.updateLabel(prevProps);
-
-        this.updateStyle(prevProps);
-    }
-
     componentDidMount() {
         let dgElement = DG.circleMarker(this.props.pos);
 
@@ -49,5 +35,19 @@ export default class CircleMarker extends MapComponent {
         });
 
         this.props.element.addLayer(dgElement);
+    }
+
+    componentDidUpdate(prevProps) {
+        let { dgElement } = this.state;
+
+        this.updatePos(prevProps);
+
+        if (this.checkPropsChange('radius', prevProps)) {
+            dgElement.setRadius(this.props.radius);
+        }
+
+        this.updateLabel(prevProps);
+
+        this.updateStyle(prevProps);
     }
 }

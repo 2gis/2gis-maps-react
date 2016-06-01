@@ -26,29 +26,6 @@ export default class Marker extends MapComponent {
         pos: this.props.pos || null
     };
 
-    dragging(e) {
-        this.setState({
-            dgElement: this.state.dgElement,
-            childrenForRender: this.state.childrenForRender,
-            pos: e.latlng
-        });
-    }
-
-    draggingSwitchTo(isEnable) {
-        const { dgElement } = this.state;
-        const self = this;
-
-        if (isEnable) {
-            dgElement.on('drag', e => self.dragging.call(self, e));
-            dgElement.dragging.enable();
-        }
-        else {
-            dgElement.off('drag', e => self.dragging.call(self, e));
-            dgElement.dragging.disable();
-            dgElement.setLatLng(this.state.pos);
-        }
-    }
-
     componentDidMount() {
         let dgElement = DG.marker(this.props.pos, {
             draggable: this.props.draggable,
@@ -102,6 +79,29 @@ export default class Marker extends MapComponent {
         // Update draggable.
         if (this.checkPropsChange('draggable', prevProps)) {
             this.draggingSwitchTo(this.props.draggable);
+        }
+    }
+
+    dragging(e) {
+        this.setState({
+            dgElement: this.state.dgElement,
+            childrenForRender: this.state.childrenForRender,
+            pos: e.latlng
+        });
+    }
+
+    draggingSwitchTo(isEnable) {
+        const { dgElement } = this.state;
+        const self = this;
+
+        if (isEnable) {
+            dgElement.on('drag', e => self.dragging.call(self, e));
+            dgElement.dragging.enable();
+        }
+        else {
+            dgElement.off('drag', e => self.dragging.call(self, e));
+            dgElement.dragging.disable();
+            dgElement.setLatLng(this.state.pos);
         }
     }
 }

@@ -11,15 +11,15 @@ export default class Ruler extends MapComponent {
         dgElement: null
     };
 
-    componentDidUpdate(prevProps, prevState) {
-        this.updatePoints(prevProps);
-    }
-
     componentDidMount() {
         let dgElement = DG.ruler(this.props.points);
         this.props.element.addLayer(dgElement);
         this.setState({
             dgElement: dgElement
         });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        this.updatePoints(prevProps);
     }
 }

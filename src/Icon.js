@@ -8,13 +8,6 @@ export default class Icon extends MapComponent {
         iconSize: PropTypes.array
     };
 
-    setIcon() {
-        this.props.element.setIcon(DG.icon({
-            iconUrl: this.props.iconUrl,
-            iconSize: this.props.iconSize
-        }));
-    }
-
     componentDidMount() {
         this.setIcon();
     }
@@ -24,5 +17,12 @@ export default class Icon extends MapComponent {
             this.setIcon();
         }
         self.props.element._bringToFront()
+    }
+
+    setIcon() {
+        this.props.element.setIcon(DG.icon({
+            iconUrl: this.props.iconUrl,
+            iconSize: this.props.iconSize
+        }));
     }
 }

@@ -14,14 +14,6 @@ export default class Rectangle extends MapComponent {
         childrenForRender: []
     };
 
-    componentDidUpdate(prevProps) {
-        if (this.checkPropsChange('bounds', prevProps)) {
-            this.state.dgElement.setBounds(this.props.bounds);
-        }
-        this.updateLabel(prevProps);
-        this.updateStyle(prevProps);
-    }
-
     componentDidMount() {
         let dgElement = DG.rectangle(this.props.bounds);
 
@@ -38,5 +30,13 @@ export default class Rectangle extends MapComponent {
         });
 
         this.props.element.addLayer(dgElement);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.checkPropsChange('bounds', prevProps)) {
+            this.state.dgElement.setBounds(this.props.bounds);
+        }
+        this.updateLabel(prevProps);
+        this.updateStyle(prevProps);
     }
 }

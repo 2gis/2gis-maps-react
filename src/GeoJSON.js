@@ -22,6 +22,16 @@ export default class GeoJSON extends MapComponent {
         dgElement: null
     };
 
+    componentDidMount() {
+        this.renderGeoJSON();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.checkPropsChange(['data', 'style', 'pointToLayer', 'onEachFeature', 'onEachFeature'], prevProps)) {
+            this.renderGeoJSON();
+        }
+    }
+
     renderGeoJSON() {
         let options = {
             style: this.props.style,
@@ -40,15 +50,5 @@ export default class GeoJSON extends MapComponent {
         this.setState({
             dgElement: dgElement
         });
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.checkPropsChange(['data', 'style', 'pointToLayer', 'onEachFeature', 'onEachFeature'], prevProps)) {
-            this.renderGeoJSON();
-        }
-    }
-
-    componentDidMount() {
-        this.renderGeoJSON();
     }
 }
