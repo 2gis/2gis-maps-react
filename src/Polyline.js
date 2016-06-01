@@ -9,9 +9,19 @@ export default class Polyline extends MapComponent {
         label: PropTypes.string
     };
 
+    state = {
+        dgElement: null
+    };
+
     static defaultProps = {
         style: null
     };
+
+    componentDidUpdate(prevProps) {
+        this.updatePoints(prevProps);
+        this.updateLabel(prevProps);
+        this.updateStyle(prevProps);
+    }
 
     componentDidMount() {
         let dgElement = DG.polyline(this.props.points, this.props.style);
@@ -19,6 +29,10 @@ export default class Polyline extends MapComponent {
         if (this.props.label) {
             dgElement.bindLabel(this.props.label)
         }
+
+        this.setState({
+            dgElement: dgElement
+        });
 
         this.props.element.addLayer(dgElement);
     }

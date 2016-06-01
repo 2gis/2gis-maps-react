@@ -12,9 +12,7 @@ export default class Ruler extends MapComponent {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.points != this.props.points) {
-            this.state.dgElement.setLatLngs(this.props.points);
-        }
+        this.updatePoints(prevProps);
     }
 
     componentDidMount() {
