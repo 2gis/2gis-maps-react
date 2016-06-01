@@ -35,6 +35,12 @@ export default class MapComponent extends Component {
         }
     }
 
+    updatePoints(prevProps) {
+        if (this.checkPropsChange('points', prevProps)) {
+            this.state.dgElement.setLatLngs(this.props.points);
+        }
+    }
+
     updateStyle(prevProps) {
         if (this.checkPropsChange('style', prevProps)) {
             this.state.dgElement.setStyle(this.props.style);
