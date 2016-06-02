@@ -1,95 +1,58 @@
-import React, { Component, Children, cloneElement } from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-
-import {
-    Map, Marker, Popup, Icon, DivIcon, Ruler, GeoJSON,
-    Wkt, Circle, Polyline, Polygon, CircleMarker, Rectangle
-} from '../../src'
+import { Map } from '../../src/'
 
 class ExampleMap extends Component {
     state = {
-        center: [54.98, 82.89],
-        zoom: 12,
-        style: {
-            width: '500px',
-            height: '500px'
-        },
-        points: [
-            [54.98, 82.9],
-            [54.95, 82.93]
-        ],
-        lineStyle: {
-            color: '#1111FF'
-        },
-        radius: 500,
-        insideMarker: [],
-        label: 'asdasdasd',
-        draggable: false,
-        onDrag: false
+        zoom: 13,
+        center: [54.98, 82.89]
     };
 
-    oneClick = e => {
-        console.log('one Click');
+    onChangeZoom = e => {
+        this.setState({
+            zoom: e.target.value
+        });
     };
 
-    oneDrag = e => {
-        console.log('one Drag');
+    onChangeCenter = e => {
+        this.setState({
+            center: e.target.value.split(',')
+        });
+    };
+
+    onZoomend = e => {
+        this.setState({
+            zoom: e.target.getZoom()
+        });
+    };
+
+    onDrag = e => {
+        this.setState({
+            center: [
+                e.target.getCenter().lat,
+                e.target.getCenter().lng
+            ]
+        });
     };
 
     render() {
         return (
             <div>
                 <Map
-                    style={this.state.style}
-                    center={ this.state.center }
+                    style={{width: "500px", height: "500px"}}
+                    center={this.state.center}
                     zoom={this.state.zoom}
-                    maxZoom={16}
-                    minZoom={10}
-                    onClick={this.oneClick}
-                    onDrag={this.state.onDrag}
-                >
-                    <Polyline
-                        points={this.state.points}
-                        style={this.state.lineStyle}
-                        label={'123123'}
-                    >
-                        <Popup>
-                            Sed consequat, leo eget bibendum sodales,
-                            augue velit cursus nunc, quis gravida magna mi a libero.
-                            Praesent vestibulum dapibus nibh. Curabitur vestibulum aliquam leo.
-                        </Popup>
-                    </Polyline>
-                </Map>
-                <button
-                    onClick={() => {
-                        let newState = this.state;
-
-                        newState.onDrag = this.oneDrag;
-
-                         //newState.
-
-                        this.setState(newState);
-                    }}
-                    >
-                    One
-                </button>
-                <button
-                    onClick={() => {
-                        let newState = this.state;
-
-                        newState.points = [
-                                            [54.98, 82.9],
-                                            [54.95, 82.95]
-                                        ];
-
-                         newState.lineStyle = {
-                            color: '#FFAA00'
-                         };
-
-                        this.setState(newState);
-                    }}>
-                    Two
-                </button>
+                    onZoomend={this.onZoomend}
+                    onDrag={this.onDrag}
+                />
+                <div>
+                    <label>Zoom:</label>
+                    <input onChange={this.onChangeZoom} value={this.state.zoom}/>
+                </div>
+                <div>
+                    <label>Center:</label>
+                    <input onChange={this.onChangeCenter} value={this.state.center}/>
+                </div>
             </div>
         );
     }
