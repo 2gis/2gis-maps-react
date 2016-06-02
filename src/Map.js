@@ -100,7 +100,7 @@ export default class Map extends MapComponent {
             dgElement.invalidateSize();
         }
 
-        this.updateEvents(dgElement);
+        this.updateEvents(dgElement, prevProps);
     }
 
     render() {

@@ -52,6 +52,6 @@ export default class CircleMarker extends MapComponent {
 
         this.updateStyle(prevProps);
 
-        this.updateEvents(dgElement);
+        this.updateEvents(dgElement, prevProps);
     }
 }

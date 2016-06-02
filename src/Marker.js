@@ -75,7 +75,7 @@ export default class Marker extends MapComponent {
             this.draggingSwitchTo(this.props.draggable);
         }
 
-        this.updateEvents(dgElement);
+        this.updateEvents(dgElement, prevProps);
     }
 
     dragging(e) {

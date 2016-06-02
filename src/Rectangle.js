@@ -42,6 +42,6 @@ export default class Rectangle extends MapComponent {
         }
         this.updateLabel(prevProps);
         this.updateStyle(prevProps);
-        this.updateEvents(dgElement);
+        this.updateEvents(dgElement, prevProps);
     }
 }
