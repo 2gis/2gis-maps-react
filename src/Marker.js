@@ -41,17 +41,11 @@ export default class Marker extends MapComponent {
             dgElement.bindLabel(this.props.label);
         }
 
-        if (this.props.onClick) {
-            dgElement.on('click', e => this.props.onClick.call(this, e));
-        }
-
-        if (this.props.onDrag) {
-            dgElement.on('drag', e => this.props.onDrag.call(this, e));
-        }
-
         this.setState({
             dgElement: dgElement
         });
+
+        this.bindEvents(dgElement);
 
         // todo: fix it after fix https://github.com/2gis/mapsapi/issues/332
         if (this.props.staticLabel) {
@@ -80,6 +74,8 @@ export default class Marker extends MapComponent {
         if (this.checkPropsChange('draggable', prevProps)) {
             this.draggingSwitchTo(this.props.draggable);
         }
+
+        this.updateEvents(dgElement);
     }
 
     dragging(e) {

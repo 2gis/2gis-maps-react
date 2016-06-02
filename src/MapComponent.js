@@ -68,4 +68,17 @@ export default class MapComponent extends Component {
     insideMap() {
         return !!this.props.element.options.zoom
     }
+
+    bindEvents(dgElement) {
+        for (let prop in this.props) {
+            if (prop.slice(0, 2) === 'on' && typeof this.props[prop] === 'function') {
+                dgElement.on(prop.slice(2).toLowerCase(), this.props[prop]);
+            }
+        }
+    }
+
+    updateEvents(dgElement) {
+        dgElement.clearAllEventListeners();
+        this.bindEvents(dgElement);
+    }
 }

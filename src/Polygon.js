@@ -29,6 +29,8 @@ export default class Polygon extends MapComponent {
             dgElement: dgElement
         });
 
+        this.bindEvents(dgElement);
+
         this.props.element.addLayer(dgElement);
     }
 
@@ -36,5 +38,6 @@ export default class Polygon extends MapComponent {
         this.updatePoints(prevProps);
         this.updateLabel(prevProps);
         this.updateStyle(prevProps);
+        this.updateEvents(this.state.dgElement);
     }
 }

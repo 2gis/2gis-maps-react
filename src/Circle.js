@@ -30,6 +30,8 @@ export default class Circle extends MapComponent {
             dgElement: dgElement
         });
 
+        this.bindEvents(dgElement);
+
         this.props.element.addLayer(dgElement);
     }
 
@@ -45,5 +47,7 @@ export default class Circle extends MapComponent {
         this.updateLabel(prevProps);
 
         this.updateStyle(prevProps);
+
+        this.updateEvents(dgElement);
     }
 }

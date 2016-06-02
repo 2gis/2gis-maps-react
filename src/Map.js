@@ -70,22 +70,19 @@ export default class Map extends MapComponent {
         // Create Map.
         let dgElement = DG.map(container, options);
 
-        // dgElement events.
-        if (this.props.onClick) {
-            dgElement.on('click', e => this.props.onClick.call(this, e));
-        }
-
         if (this.props.onProjectChange) {
-            dgElement.on('projectchange', e => this.props.onProjectChange.call(this, e));
+            dgElement.on('projectchange', e => this.props.onProjectChange(e));
         }
 
         if (this.props.onProjectLeave) {
-            dgElement.on('projectleave', e => this.props.onProjectLeave.call(this, e));
+            dgElement.on('projectleave', e => this.props.onProjectLeave(e));
         }
 
         this.setState({
             dgElement: dgElement
         });
+
+        this.bindEvents(dgElement);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -102,6 +99,8 @@ export default class Map extends MapComponent {
         if (this.checkPropsChange('style', prevProps)) {
             dgElement.invalidateSize();
         }
+
+        this.updateEvents(dgElement);
     }
 
     render() {

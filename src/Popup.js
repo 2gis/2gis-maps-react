@@ -31,10 +31,6 @@ export default class Popup extends MapComponent {
 
             dgElement = element.getPopup()
         }
-
-        if (this.props.onClick) {
-            dgElement.on('click', e => this.props.onClick.call(this, e));
-        }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -44,7 +40,7 @@ export default class Popup extends MapComponent {
             const popupHtml = this.renderChildren();
 
             if (this.insideMap()) {
-                element._popup.setContent(popupHtml)
+                element.getPopup().setContent(popupHtml)
             }
             else {
                 element.setPopupContent(popupHtml);
@@ -52,6 +48,8 @@ export default class Popup extends MapComponent {
         }
 
         this.updatePos(prevProps);
+
+        this.updateEvents(element.getPopup());
     }
 
     componentWillUnmount() {

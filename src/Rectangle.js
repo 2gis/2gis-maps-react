@@ -29,14 +29,19 @@ export default class Rectangle extends MapComponent {
             dgElement: dgElement
         });
 
+        this.bindEvents(dgElement);
+
         this.props.element.addLayer(dgElement);
     }
 
     componentDidUpdate(prevProps) {
+        let { dgElement } = this.state;
+
         if (this.checkPropsChange('bounds', prevProps)) {
-            this.state.dgElement.setBounds(this.props.bounds);
+            dgElement.setBounds(this.props.bounds);
         }
         this.updateLabel(prevProps);
         this.updateStyle(prevProps);
+        this.updateEvents(dgElement);
     }
 }

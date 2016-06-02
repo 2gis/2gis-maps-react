@@ -28,6 +28,8 @@ export default class Polyline extends MapComponent {
             dgElement: dgElement
         });
 
+        this.bindEvents(dgElement);
+
         this.props.element.addLayer(dgElement);
     }
 
@@ -35,5 +37,6 @@ export default class Polyline extends MapComponent {
         this.updatePoints(prevProps);
         this.updateLabel(prevProps);
         this.updateStyle(prevProps);
+        this.updateEvents(this.state.dgElement);
     }
 }

@@ -7,138 +7,90 @@ import {
 } from '../../src'
 
 class ExampleMap extends Component {
-    echoLatlng(e) {
-        console.log(e.latlng.lat + ', ' + e.latlng.lng);
-    }
+    state = {
+        center: [54.98, 82.89],
+        zoom: 12,
+        style: {
+            width: '500px',
+            height: '500px'
+        },
+        points: [
+            [54.98, 82.9],
+            [54.95, 82.93]
+        ],
+        lineStyle: {
+            color: '#1111FF'
+        },
+        radius: 500,
+        insideMarker: [],
+        label: 'asdasdasd',
+        draggable: false,
+        onDrag: false
+    };
+
+    oneClick = e => {
+        console.log('one Click');
+    };
+
+    oneDrag = e => {
+        console.log('one Drag');
+    };
+
     render() {
         return (
-            <Map
-                style={{width: "500px", height: "500px"}}
-                center={[54.98, 82.89]}
-                zoom={12}
-                maxZoom={16}
-                minZoom={10}
-                onClick={this.echoLatlng}
-            >
-                <Marker pos={[54.98, 82.89]}>
-                    <Popup>
-                        <h2>Vestibulum eu odio.</h2>
-                        <p>Morbi mattis ullamcorper velit.</p>
-                    </Popup>
-                </Marker>
-
-                <Marker pos={[54.98, 82.86]}>
-                    <Icon
-                        iconSize={[48, 48]}
-                        iconUrl={'http://maps.api.2gis.ru/2.0/example_logo.png'}
-                    />
-                    <Popup onClick={e => console.log(e)}>
-                        <h2>Vestibulum eu odio.</h2>
-                    </Popup>
-                </Marker>
-
-                <Marker
-                    pos={[54.98, 82.9]}
-                    staticLabel={'I\'m marker with static label.'}
-                    onClick={e => console.log(e)}
-                />
-
-                <Marker pos={[54.96, 82.91]} label={'I\'m marker.'} draggable={true}>
-                    <DivIcon iconSize={[48, 35]} >
-                        <p style={
-                            {
-                                background: 'green',
-                                padding: 0,
-                                margin: 0
-                            }
-                        }>HTML ICON</p>
-                    </DivIcon>
-                </Marker>
-
-                <Popup pos={[54.96, 82.9]} onClick={e => console.log(e)}>
-                    <h2>Vestibulum eu odio.</h2>
-                    <p>Morbi mattis ullamcorper velit.</p>
-                </Popup>
-
-                <Ruler points={[
-                        [54.99, 82.86],
-                        [55.00, 82.89],
-                        [54.99, 82.91]
-                        ]}/>
-
-                <GeoJSON data={{
-                            "type": "LineString",
-                            "coordinates": [
-                                            [82.86540, 55.00006],
-                                            [82.89493, 55.00302],
-                                            [82.91931, 54.99544]
-                                           ]
-                                }}
-                         style={{
-                            "color": "#ff7800",
-                            "weight": 5,
-                            "opacity": 0.65
-                         }}
-                />
-
-                <Wkt data='POLYGON((
-                                    82.87313 54.97564,
-                                    82.87176 54.96194,
-                                    82.85253 54.96224,
-                                    82.85562 54.97662,
-                                    82.87313 54.97564
-                                  ))'
-                     style={{
-                            "color": "#00ff00",
-                            "weight": 1
-                         }}
-                />
-
-                <Circle pos={[54.99, 82.89]} radius={500}>
-                    <Popup>
-                        <h2>Circle popup.</h2>
-                        <p>Some text.</p>
-                    </Popup>
-                </Circle>
-
-                <Polyline points={[
-                                    [54.95829, 82.82386],
-                                    [54.94055, 82.89253],
-                                    [54.95356, 82.96291]
-                                    ]}
-                          style={{
-                            "color": "#ff0000",
-                            "weight": 8,
-                            "opacity": 0.45
-                         }}
-                          label={'I\'m line.'}
-                />
-
-                <Polygon points={[
-                                    [55.022511774575335, 82.91553497314455],
-                                    [55.0114888249396, 82.89253234863283],
-                                    [54.98864593043392, 82.95879364013673],
-                                    [55.012079416926845, 82.96840667724611]
-                                ]}
-                         label={'I\'m polygon.'}
+            <div>
+                <Map
+                    style={this.state.style}
+                    center={ this.state.center }
+                    zoom={this.state.zoom}
+                    maxZoom={16}
+                    minZoom={10}
+                    onClick={this.oneClick}
+                    onDrag={this.state.onDrag}
                 >
-                    <Popup>
-                        <p>Polygon popup</p>
-                    </Popup>
-                </Polygon>
+                    <Polyline
+                        points={this.state.points}
+                        style={this.state.lineStyle}
+                        label={'123123'}
+                    >
+                        <Popup>
+                            Sed consequat, leo eget bibendum sodales,
+                            augue velit cursus nunc, quis gravida magna mi a libero.
+                            Praesent vestibulum dapibus nibh. Curabitur vestibulum aliquam leo.
+                        </Popup>
+                    </Polyline>
+                </Map>
+                <button
+                    onClick={() => {
+                        let newState = this.state;
 
-                <CircleMarker pos={[54.99, 82.9]} radius={20}/>
+                        newState.onDrag = this.oneDrag;
 
-                <Rectangle
-                    bounds={[[54.95731, 82.87261], [54.947, 82.92]]}
-                    label={'I\'m rectangle.'}
-                >
-                    <Popup>
-                        <p>Rectangle popup</p>
-                    </Popup>
-                </Rectangle>
+                         //newState.
 
-            </Map>
+                        this.setState(newState);
+                    }}
+                    >
+                    One
+                </button>
+                <button
+                    onClick={() => {
+                        let newState = this.state;
+
+                        newState.points = [
+                                            [54.98, 82.9],
+                                            [54.95, 82.95]
+                                        ];
+
+                         newState.lineStyle = {
+                            color: '#FFAA00'
+                         };
+
+                        this.setState(newState);
+                    }}>
+                    Two
+                </button>
+            </div>
         );
     }
 }
