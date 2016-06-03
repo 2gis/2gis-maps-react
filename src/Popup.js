@@ -5,8 +5,7 @@ import MapComponent from './MapComponent'
 
 export default class Popup extends MapComponent {
     static propsTypes = {
-        pos: PropTypes.array,
-        onClick: PropTypes.func
+        pos: PropTypes.array
     };
 
     componentDidMount() {
@@ -49,7 +48,9 @@ export default class Popup extends MapComponent {
 
         this.updatePos(prevProps);
 
-        this.updateEvents(element.getPopup());
+        if (element.getPopup) {
+            this.updateEvents(element.getPopup());
+        }
     }
 
     componentWillUnmount() {

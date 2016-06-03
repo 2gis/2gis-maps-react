@@ -16,9 +16,6 @@ export default class Map extends MapComponent {
         scrollWheelZoom: PropTypes.bool,
         doubleClickZoom: PropTypes.bool,
         dragging: PropTypes.bool,
-        onClick: PropTypes.func,
-        onProjectChange: PropTypes.func,
-        onProjectLeave: PropTypes.func,
         maxBounds: PropTypes.array,
         minZoom: PropTypes.number,
         maxZoom: PropTypes.number

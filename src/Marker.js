@@ -5,8 +5,6 @@ import MapComponent from './MapComponent'
 export default class Marker extends MapComponent {
     static propsTypes = {
         pos: PropTypes.array,
-        onClick: PropTypes.func,
-        onDrag: PropTypes.func,
         label: PropTypes.string,
         staticLabel: PropTypes.string,
         draggable: PropTypes.bool,
@@ -32,17 +30,17 @@ export default class Marker extends MapComponent {
             clickable: this.props.clickable
         });
 
-        // For dragging Marker.
-        if (this.props.draggable) {
-            this.draggingSwitchTo(true);
-        }
-
         if (this.props.label) {
             dgElement.bindLabel(this.props.label);
         }
 
         this.setState({
             dgElement: dgElement
+        }, () => {
+            // For dragging Marker.
+            if (this.props.draggable) {
+                this.draggingSwitchTo(true);
+            }
         });
 
         this.bindEvents(dgElement);
@@ -78,24 +76,23 @@ export default class Marker extends MapComponent {
         this.updateEvents(dgElement, prevProps);
     }
 
-    dragging(e) {
+    dragging = e => {
         this.setState({
             dgElement: this.state.dgElement,
             childrenForRender: this.state.childrenForRender,
             pos: e.latlng
         });
-    }
+    };
 
     draggingSwitchTo(isEnable) {
         const { dgElement } = this.state;
-        const self = this;
 
         if (isEnable) {
-            dgElement.on('drag', e => self.dragging.call(self, e));
+            dgElement.on('drag', this.dragging);
             dgElement.dragging.enable();
         }
         else {
-            dgElement.off('drag', e => self.dragging.call(self, e));
+            dgElement.off('drag', this.dragging);
             dgElement.dragging.disable();
             dgElement.setLatLng(this.state.pos);
         }
