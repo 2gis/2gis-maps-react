@@ -69,9 +69,13 @@ export default class MapComponent extends Component {
         return !!this.props.element.options.zoom
     }
 
+    isFunction(variable) {
+        return typeof variable === 'function';
+    }
+
     bindEvents(dgElement) {
         for (let prop in this.props) {
-            if (prop.slice(0, 2) === 'on' && typeof this.props[prop] === 'function') {
+            if (prop.slice(0, 2) === 'on' && this.isFunction(this.props[prop])) {
                 dgElement.on(prop.slice(2).toLowerCase(), this.props[prop]);
             }
         }
@@ -79,13 +83,20 @@ export default class MapComponent extends Component {
 
     updateEvents(dgElement, prevProps) {
         for (let prop in this.props) {
-            if (prop.slice(0, 2) === 'on' && typeof this.props[prop] === 'function') {
-                if (typeof prevProps[prop] == 'undefined') {
-                    dgElement.on(prop.slice(2).toLowerCase(), this.props[prop]);
+            if (prop.slice(0, 2) === 'on') {
+                let dgPropName = prop.slice(2).toLowerCase();
+
+                if (!prevProps[prop] && this.isFunction(this.props[prop])) {
+                    dgElement.on(dgPropName, this.props[prop]);
                 }
-                if (this.props[prop] !== prevProps[prop]) {
-                    dgElement.off(prop.slice(2).toLowerCase(), prevProps[prop]);
-                    dgElement.on(prop.slice(2).toLowerCase(), this.props[prop]);
+
+                if (this.props[prop] !== prevProps[prop] && this.isFunction(this.props[prop])) {
+                    dgElement.off(dgPropName, prevProps[prop]);
+                    dgElement.on(dgPropName, this.props[prop]);
+                }
+
+                if (!this.props[prop] && this.isFunction(prevProps[prop])) {
+                    dgElement.off(dgPropName, prevProps[prop]);
                 }
             }
         }
