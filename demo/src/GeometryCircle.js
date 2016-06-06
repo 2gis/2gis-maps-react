@@ -8,7 +8,7 @@ export default class GeometryCircle extends Component {
         geometry: [],
         pos: [54.9827, 82.8958],
         radius: 100,
-        type: false
+        type: false // If is false then Circle, if is true then Circle Marker.
     };
 
     onChangePos = e => {
@@ -88,11 +88,11 @@ export default class GeometryCircle extends Component {
                 <br/>
                 <label>Radius </label>
                 <input onChange={this.onChangeRadius} value={this.state.radius} style={{width: 50}}/>
-                <label> {this.state.type ? 'pixels' : 'meters'}</label>
+                <label>{this.state.type ? 'pixels' : 'meters'}</label>
                 <br/>
-                <input type="radio" name="type" checked={!this.state.type} value={!this.state.type} onChange={this.onChangeCircleType}/> <label>Circle</label>
+                <input type="radio" name="type-circle" checked={!this.state.type} value={!this.state.type} onChange={this.onChangeCircleType}/> <label>Circle</label>
                 <br/>
-                <input type="radio" name="type" checked={this.state.type} value={this.state.type} onChange={this.onChangeCircleMarkerType}/> <label>Circle Marker</label>
+                <input type="radio" name="type-circle" checked={this.state.type} value={this.state.type} onChange={this.onChangeCircleMarkerType}/> <label>Circle Marker</label>
                 <br/>
                 <button onClick={this.addElement}>Add element</button>
                 <br/>

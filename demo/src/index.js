@@ -5,6 +5,7 @@ import SimpleMap from './SimpleMap'
 import Popups from './Popups'
 import Markers from './Markers'
 import GeometryCircle from './GeometryCircle'
+import GeometryPolygons from './GeometryPolygons'
 
 class Examples extends Component {
     render() {
@@ -20,8 +21,12 @@ class Examples extends Component {
               <Markers/>
 
               <h2 id="geometry">Geometry <a href="#geometry">#</a></h2>
+
               <h3 id="geometry-circle">Circle and Circle Marker <a href="#geometry-circle">#</a></h3>
               <GeometryCircle/>
+
+              <h3 id="geometry-polygon">Polygon and Rectangle <a href="#geometry-polygon">#</a></h3>
+              <GeometryPolygons/>
           </div>
         );
     };
