@@ -107,7 +107,7 @@ export default class GeometryPolygons extends Component {
         return (
             <div>
                 <div>
-                    <label style={{display: 'block'}}>{this.state.type ? 'Bounds (two points): ' : 'Points: '}</label>
+                    <label style={{display: 'block'}}>{(this.state.type === 0 || this.state.type === 1) ? 'Points: ' : 'Bounds (two points): '}</label>
                     <textarea
                         onChange={this.onChangePoints}
                         value={JSON.stringify(this.state.points)}
