@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, Polygon, Rectangle } from '../../src/'
+import { Map, Polygon, Rectangle , Polyline} from '../../src/'
 
 export default class GeometryPolygons extends Component {
     state = {
@@ -11,7 +11,7 @@ export default class GeometryPolygons extends Component {
             [54.9837,82.8968],
             [54.9837,82.8938]
         ],
-        type: false // If is false then Polygon, if is true then Rectangle.
+        type: 0 // If is 0 then Line, if is 1 then Polygon, if is 2 then Rectangle.
     };
 
     onChangePoints = e => {
@@ -20,10 +20,18 @@ export default class GeometryPolygons extends Component {
         });
     };
 
+    onChangeLine = e => {
+        if (e.target.value) {
+            this.setState({
+                type: 0
+            });
+        }
+    };
+
     onChangePolygon = e => {
         if (e.target.value) {
             this.setState({
-                type: false
+                type: 1
             });
         }
     };
@@ -31,7 +39,7 @@ export default class GeometryPolygons extends Component {
     onChangeRectangle = e => {
         if (e.target.value) {
             this.setState({
-                type: true
+                type: 2
             });
         }
     };
@@ -40,26 +48,47 @@ export default class GeometryPolygons extends Component {
         let polygons = this.state.polygons;
         const points = this.state.points;
 
+        switch (this.state.type) {
+            case 0:
+                polygons.push(
+                    <Polyline
+                        key={this.state.polygons.length}
+                        points={points}
+                        label="I'm Polyline."
+                    />
+                );
+                break;
+            case 1:
+                polygons.push(
+                    <Polygon
+                        key={this.state.polygons.length}
+                        points={points}
+                        label="I'm Polygon."
+                        style={{
+                            color: '#00FF00'
+                        }}
+                    />
+                );
+                break;
+            case 2:
+                polygons.push(
+                    <Rectangle
+                        key={this.state.polygons.length}
+                        bounds={points}
+                        style={{
+                            color: '#FF0000'
+                        }}
+                        label="I'm Rectangle."
+                    />
+                );
+                break;
+        }
+
         if (this.state.type) {
-            polygons.push(
-                <Rectangle
-                    key={this.state.polygons.length}
-                    bounds={points}
-                    style={{
-                        color: '#FF0000'
-                    }}
-                    label="I'm Rectangle."
-                />
-            );
+
         }
         else {
-            polygons.push(
-                <Polygon
-                    key={this.state.polygons.length}
-                    points={points}
-                    label="I'm Polygon."
-                />
-            );
+
         }
         this.setState({
             polygons: polygons
@@ -89,9 +118,11 @@ export default class GeometryPolygons extends Component {
                     />
                 </div>
                 <br/>
-                <input type="radio" name="type-polygon" checked={!this.state.type} value={!this.state.type} onChange={this.onChangePolygon}/> <label>Polygon</label>
+                <input type="radio" name="type-polygon" checked={this.state.type === 0} value={this.state.type} onChange={this.onChangeLine}/> <label>Line</label>
                 <br/>
-                <input type="radio" name="type-polygon" checked={this.state.type} value={this.state.type} onChange={this.onChangeRectangle}/> <label>Rectangle</label>
+                <input type="radio" name="type-polygon" checked={this.state.type === 1} value={!this.state.type} onChange={this.onChangePolygon}/> <label>Polygon</label>
+                <br/>
+                <input type="radio" name="type-polygon" checked={this.state.type === 2} value={this.state.type} onChange={this.onChangeRectangle}/> <label>Rectangle</label>
                 <br/>
                 <button onClick={this.addElement}>Add element</button>
                 <br/>
