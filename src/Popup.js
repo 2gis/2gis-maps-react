@@ -5,7 +5,20 @@ import MapComponent from './MapComponent'
 
 export default class Popup extends MapComponent {
     static propsTypes = {
-        pos: PropTypes.array
+        pos: PropTypes.array,
+        maxWidth: PropTypes.number,
+        minWidth: PropTypes.number,
+        maxHeight: PropTypes.number,
+        sprawling: PropTypes.bool,
+        className: PropTypes.string
+    };
+
+    static defaultProps = {
+        maxWidth: 300,
+        minWidth: 50,
+        maxHeight: null,
+        sprawling: false,
+        className: ''
     };
 
     componentDidMount() {
@@ -15,8 +28,17 @@ export default class Popup extends MapComponent {
 
         let dgElement = null;
 
+        // Popup options.
+        const {
+            maxWidth, minWidth, maxHeight, sprawling, className
+        } = this.props;
+
+        let options = {
+            maxWidth, minWidth, maxHeight, sprawling, className
+        };
+
         if (this.insideMap()) {
-            dgElement = DG.popup()
+            dgElement = DG.popup(options)
                 .setLatLng(this.props.pos)
                 .setContent(popupHtml)
                 .openOn(element);
@@ -25,7 +47,7 @@ export default class Popup extends MapComponent {
                 element.setPopupContent(popupHtml);
             }
             else {
-                element.bindPopup(popupHtml);
+                element.bindPopup(popupHtml, options);
             }
 
             dgElement = element.getPopup()
