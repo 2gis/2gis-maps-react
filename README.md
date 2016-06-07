@@ -41,7 +41,7 @@
 
 Map is the basic component. 
 To create a specified center point , zoom level and size of dom element.
-[Demo](http://2gis.github.io/2gis-maps-react/#simple-map){:target="_blank"}
+[Demo](http://2gis.github.io/2gis-maps-react/#simple-map)
 
 ```jsx
 class ExampleMap extends Component {
@@ -106,7 +106,7 @@ class ExampleMap extends Component {
 
 Popup width change position and content.
 For set maxWidth, minWith and maxHeight use prop sprawling.
-[Demo](http://2gis.github.io/2gis-maps-react/#popups){:target="_blank"}
+[Demo](http://2gis.github.io/2gis-maps-react/#popups)
 
 ```jsx
 class Popups extends Component {
