@@ -41,6 +41,7 @@
 
 Map is the basic component. 
 To create a specified center point , zoom level and size of dom element.
+[Demo](http://2gis.github.io/2gis-maps-react/#simple-map)
 
 ```jsx
 import React, { Component } from 'react'
