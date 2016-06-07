@@ -44,9 +44,6 @@ To create a specified center point , zoom level and size of dom element.
 [Demo](http://2gis.github.io/2gis-maps-react/#simple-map){:target="_blank"}
 
 ```jsx
-import React, { Component } from 'react'
-import { Map } from '2gis-maps-react'
-
 class ExampleMap extends Component {
     state = {
         zoom: 13,
@@ -112,7 +109,7 @@ For set maxWidth, minWith and maxHeight use prop sprawling.
 [Demo](http://2gis.github.io/2gis-maps-react/#popups){:target="_blank"}
 
 ```jsx
-export default class Popups extends Component {
+class Popups extends Component {
     state = {
         zoom: 13,
         center: [54.98, 82.89],
