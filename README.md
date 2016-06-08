@@ -40,39 +40,39 @@
 ##### Create simple map. [Api referense.](http://api.2gis.ru/doc/maps/manual/map/)
 
 Map is the basic component. 
-To create a specified center point , zoom level and size of dom element.
-[Demo](http://2gis.github.io/2gis-maps-react/#simple-map)
-[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/SimpleMap.js)
+To create a specified center point , zoom level and size of dom element.  
+[Demo](http://2gis.github.io/2gis-maps-react/#simple-map)  
+[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/SimpleMap.js)  
 
 ##### Create popup inside map. [Api referense.](http://api.2gis.ru/doc/maps/examples/popups/)
 
 Popup width change position and content.
-For set maxWidth, minWith and maxHeight use prop sprawling.
-[Demo](http://2gis.github.io/2gis-maps-react/#popups)
-[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/Popups.js)
+For set maxWidth, minWith and maxHeight use prop sprawling.  
+[Demo](http://2gis.github.io/2gis-maps-react/#popups)  
+[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/Popups.js)  
 
 
 ##### Create Markers and Popups inside Markers. [Api referense.](http://api.2gis.ru/doc/maps/examples/markers/)
 
 Static and draggable markers.
-Marker with popup inside.
-[Demo](http://2gis.github.io/2gis-maps-react/#markers-simple)
-[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/Markers.js)
+Marker with popup inside.  
+[Demo](http://2gis.github.io/2gis-maps-react/#markers-simple)  
+[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/Markers.js)  
 
-Marker with icon and html icon inside.
-[Demo](http://2gis.github.io/2gis-maps-react/#markers-icon)
-[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/MarkerIcon.js)
+Marker with icon and html icon inside.  
+[Demo](http://2gis.github.io/2gis-maps-react/#markers-icon)  
+[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/MarkerIcon.js)  
 
-Marker with label and static label.
-[Demo](http://2gis.github.io/2gis-maps-react/#markers-label)
-[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/MarkerLabel.js)
+Marker with label and static label.  
+[Demo](http://2gis.github.io/2gis-maps-react/#markers-label)  
+[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/MarkerLabel.js)  
 
 ##### Create geometry. [Api referense.](http://api.2gis.ru/doc/maps/examples/geometries/)
 
-Circle and Circle Marker.
-[Demo](http://2gis.github.io/2gis-maps-react/#geometry-circle)
-[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/GeometryCircle.js)
+Circle and Circle Marker.  
+[Demo](http://2gis.github.io/2gis-maps-react/#geometry-circle)  
+[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/GeometryCircle.js)  
 
-Polygon, Polyline and Rectangle .
-[Demo](http://2gis.github.io/2gis-maps-react/#geometry-polygon)
-[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/GeometryPolygons.js)
+Polygon, Polyline and Rectangle .  
+[Demo](http://2gis.github.io/2gis-maps-react/#geometry-polygon)  
+[Source code](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/GeometryPolygons.js)  
