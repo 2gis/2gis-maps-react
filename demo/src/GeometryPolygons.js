@@ -118,7 +118,7 @@ export default class GeometryPolygons extends Component {
                     />
                 </div>
                 <br/>
-                <input type="radio" name="type-polygon" checked={this.state.type === 0} value={this.state.type} onChange={this.onChangeLine}/> <label>Line</label>
+                <input type="radio" name="type-polygon" checked={this.state.type === 0} value={this.state.type} onChange={this.onChangeLine}/> <label>Polyline</label>
                 <br/>
                 <input type="radio" name="type-polygon" checked={this.state.type === 1} value={!this.state.type} onChange={this.onChangePolygon}/> <label>Polygon</label>
                 <br/>

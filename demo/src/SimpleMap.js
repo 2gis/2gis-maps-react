@@ -38,11 +38,11 @@ export default class SimpleMap extends Component {
         return (
             <div>
                 <div>
-                    <label>Zoom:</label>
+                    <label>Zoom: </label>
                     <input onChange={this.onChangeZoom} value={this.state.zoom} style={{width: 30}}/>
                 </div>
                 <div>
-                    <label>Center:</label>
+                    <label>Center: </label>
                     <input onChange={this.onChangeCenter} value={this.state.center} style={{width: 300}}/>
                 </div>
                 <Map
