@@ -1,23 +1,35 @@
 import expect from 'expect'
 import React from 'react'
-import {render, unmountComponentAtNode} from 'react-dom'
+import { render, unmountComponentAtNode } from 'react-dom'
 
-import Component from 'src/'
+import { Map, Marker } from 'src/'
 
-describe('Component', () => {
-  let node
+describe('Map component with Marker inside', () => {
+    let node;
 
-  beforeEach(() => {
-    node = document.createElement('div')
-  })
+    const map = (
+        <Map
+            center={[0, 0]}
+            zoom={12}
+        >
+            <Marker
+                pos={[0, 0]}
+                staticLabel={'I\'m marker on map.'}
+            />
+        </Map>
+    );
 
-  afterEach(() => {
-    unmountComponentAtNode(node)
-  })
+    beforeEach(() => {
+        node = document.createElement('div')
+    });
 
-  it('displays a welcome message', () => {
-    render(<Component/>, node, () => {
-      expect(node.innerHTML).toContain('Welcome to React components')
+    afterEach(() => {
+        unmountComponentAtNode(node)
+    });
+
+    it('displays a static label', () => {
+        render(map, node, () => {
+            expect(node.innerHTML).toContain('I\'m marker on map.')
+        });
     })
-  })
-})
+});
