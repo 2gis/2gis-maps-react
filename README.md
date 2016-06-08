@@ -10,10 +10,10 @@
 Use command `npm install 2gis-maps-react` for install this module.
 
 [build-badge]: https://travis-ci.org/2gis/2gis-maps-react.svg?branch=master
-[build]: https://travis-ci.org/2gis/2gismaps-react
+[build]: https://travis-ci.org/2gis/2gis-maps-react
 
-[npm-badge]: https://img.shields.io/npm/v/2gismaps-react.svg?style=flat-square
-[npm]: https://www.npmjs.org/package/2gismaps-react
+[npm-badge]: https://img.shields.io/npm/v/2gis-maps-react.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/2gis-maps-react
 
 [coveralls-badge]: https://coveralls.io/repos/github/2gis/2gismaps-react/badge.svg?branch=master
 [coveralls]: https://coveralls.io/github/2gis/2gismaps-react?branch=master
