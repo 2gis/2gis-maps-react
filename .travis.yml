@@ -2,7 +2,7 @@ sudo: false
 
 language: node_js
 node_js:
-  - 4
+  - 4.2.6
 
 cache:
   directories:
@@ -10,6 +10,7 @@ cache:
 
 before_install:
   - npm install codecov.io coveralls
+  - npm install nwb -g
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js
