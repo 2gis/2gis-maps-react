@@ -13,11 +13,6 @@
 
 * `npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
 
-## Running Tests
-
-* `npm test` will run the tests once.
-* `npm run test:watch` will run the tests on every change.
-
 ## Building
 
 * `npm run build` will build the component for publishing to npm and also bundle the demo app.
@@ -34,7 +29,7 @@
 [coveralls]: https://coveralls.io/github/2gis/2gismaps-react
 
 
-## Getting started
+## Docs
 ###### We recommend using ES7
 
 ##### Create simple map. [Api referense.](http://api.2gis.ru/doc/maps/manual/map/)
