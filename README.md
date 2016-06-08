@@ -1,4 +1,4 @@
-# React component Maps API 2GIS
+# React component Maps [API 2GIS](https://github.com/2gis/mapsapi)
 ### Not use this in production. Project in development
 
 [![Travis][build-badge]][build]
@@ -7,7 +7,7 @@
 
 ## Installation
 
-* Running `npm install` in the components's root directory will install everything you need for development.
+Use command `npm install 2gis-maps-react` for install this module.
 
 [build-badge]: https://img.shields.io/travis/2gis/2gismaps-react/master.svg?style=flat-square
 [build]: https://travis-ci.org/2gis/2gismaps-react
