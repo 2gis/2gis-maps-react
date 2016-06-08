@@ -84,12 +84,12 @@ Marker with popup inside. [Demo](http://2gis.github.io/2gis-maps-react/#markers-
             draggable={true}
         />
         <Marker
-                    pos={[54.98, 82.895]}
-                >
-                    <Popup>
-                        Some content for popup
-                        <h3>Can be HTML</h3>
-                    </Popup>
+            pos={[54.98, 82.895]}
+        >
+            <Popup>
+                Some content for popup
+                <h3>Can be HTML</h3>
+            </Popup>
         </Marker>
     </Map>
 ```  
