@@ -1,4 +1,4 @@
-# React component Maps [API 2GIS](https://github.com/2gis/mapsapi)
+# React component [Maps API 2GIS](https://github.com/2gis/mapsapi)
 ### Not use this in production. Project in development
 
 [![Travis][build-badge]][build]
