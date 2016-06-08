@@ -221,3 +221,12 @@ class Popups extends Component {
 }
 
 ```
+
+##### Create Markers and Popups inside Markers. [Api referense.](http://api.2gis.ru/doc/maps/examples/markers/)
+
+Static and draggable markers.
+Marker with popup inside.
+Marker with label and static label.
+Marker with icon and html icon inside.
+
+[Demo](http://2gis.github.io/2gis-maps-react/#markers-simple)

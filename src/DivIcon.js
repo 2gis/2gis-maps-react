@@ -5,17 +5,28 @@ import MapComponent from './MapComponent'
 
 export default class DivIcon extends MapComponent {
     static propsTypes = {
-        iconSize: PropTypes.array
+        iconSize: PropTypes.array,
+        dangerouslySetInnerHTML: PropTypes.string
+    };
+
+    static defaultProps = {
+        dangerouslySetInnerHTML: ''
     };
 
     componentDidMount() {
-        const iconHtml = ReactDOMServer.renderToString(
-            <div style={{
+        let iconHtml = '';
+        if (this.props.children) {
+            iconHtml = ReactDOMServer.renderToString(
+                <div style={{
                 padding: 0,
                 margin: 0,
                 display: 'inline'
             }}>{ this.props.children }</div>
-        );
+            );
+        }
+        else {
+            iconHtml = this.props.dangerouslySetInnerHTML;
+        }
 
         let icon = DG.divIcon({
             iconSize: this.props.iconSize,
