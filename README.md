@@ -19,7 +19,7 @@ Use command `npm install 2gis-maps-react` for install this module.
 [coveralls]: https://coveralls.io/github/2gis/2gismaps-react?branch=master
 
 
-## Docs
+## Getting started
 
 ##### Create simple map. [Api referense.](http://api.2gis.ru/doc/maps/manual/map/)
 
@@ -203,7 +203,20 @@ Polygon, Polyline and Rectangle. [Demo](http://2gis.github.io/2gis-maps-react/#g
                 />
     </Map>
 ```
-   
+
+### Events
+
+For binding 2gis-mapsapi events use prop same to `onEvent` where Event is 2gis-mapsapi event with a capital first character. 
+
+### Components
+
+#### Map
+
+|Prop name| Dynamic | Required | Description  |
+|---------|---------|----------|--------------|
+| center  |    ✓    |     ✓    | Center position of map             |
+|  zoom   |    ✓    |     ✓    | Zoom level of map             |
+
 ## Demo Development Server
 
 * `npm start` will run a development server with the component's demo app at [http://localhost:3000](http://localhost:3000) with hot module reloading.
