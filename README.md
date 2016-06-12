@@ -212,10 +212,13 @@ For binding 2gis-mapsapi events use prop same to `onEvent` where Event is 2gis-m
 
 #### Map
 
-|Prop name| Dynamic | Required | Description  |
-|---------|---------|----------|--------------|
-| center  |    ✓    |     ✓    | Center position of map             |
-|  zoom   |    ✓    |     ✓    | Zoom level of map             |
+|Prop name| Dynamic | Required | Description  | Data example |
+|---------|:-------:|:--------:|--------------|------------|
+| center  |    ✓    |     ✓    | Center position of map | `[54.98, 82.89]`|
+|  zoom   |    ✓    |     ✓    | Zoom level of map | `15` |
+| minZoom |    ✓    |     ✘    | Minimal zoom level | `10` |
+| maxZoom |    ✓    |     ✘    | Maximal zoom level | `20` |
+|maxBounds|    ✓    |     ✘    | Bounds of map | `[[54.98, 82.89],[54.98, 82.89]]` |
 
 ## Demo Development Server
 
