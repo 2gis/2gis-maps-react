@@ -4,21 +4,21 @@ import MapComponent from './MapComponent'
 
 export default class Map extends MapComponent {
     static propsTypes = {
-        $style: PropTypes.object,
-        $center: PropTypes.array,
-        $zoom: PropTypes.number,
-        $geoclicker: PropTypes.bool,
-        $projectDetector: PropTypes.bool,
-        $zoomControl: PropTypes.bool,
-        $fullscreenControl: PropTypes.bool,
-        $preferCanvas: PropTypes.bool,
-        $touchZoom: PropTypes.bool,
-        $scrollWheelZoom: PropTypes.bool,
-        $doubleClickZoom: PropTypes.bool,
+        style: PropTypes.object,
+        center: PropTypes.array,
+        zoom: PropTypes.number,
+        geoclicker: PropTypes.bool,
+        projectDetector: PropTypes.bool,
+        zoomControl: PropTypes.bool,
+        fullscreenControl: PropTypes.bool,
+        preferCanvas: PropTypes.bool,
+        touchZoom: PropTypes.bool,
+        scrollWheelZoom: PropTypes.bool,
+        doubleClickZoom: PropTypes.bool,
         dragging: PropTypes.bool,
-        $maxBounds: PropTypes.array,
-        $minZoom: PropTypes.number,
-        $maxZoom: PropTypes.number
+        maxBounds: PropTypes.array,
+        minZoom: PropTypes.number,
+        maxZoom: PropTypes.number
     };
 
     static defaultProps = {
