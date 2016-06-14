@@ -212,38 +212,52 @@ For binding 2gis-mapsapi events use prop same to `onEvent` where Event is 2gis-m
 
 #### Map
 
-|Prop name        |Dynamic|Required|Description                              | Data example                      |Default value |
-|-----------------|:-----:|:------:|-----------------------------------------|-----------------------------------|:------------:|
-| center          |   ✓   |   ✓    |Center position of map                   |`[54.98, 82.89]`                   | -            |
-|  zoom           |   ✓   |   ✓    |Zoom level of map                        |`15`                               | -            |
-| minZoom         |   ✘   |   ✘    |Minimal zoom level                       |`10`                               | `null`       |
-| maxZoom         |   ✘   |   ✘    |Maximal zoom level                       |`20`                               |`null`        |
-|maxBounds        |   ✘   |   ✘    |Bounds of map                            |`[[54.98, 82.89],[54.98, 82.89]]`  | `null`       |
-|  style          |   ✓   |   ✘    |CSS style of map container               |`{width: "500px", height: "500px"}`| `null`       |
-|geoclicker       |   ✘   |   ✘    |Show popup on click about place on map   |`true`                             | `false`      |
-|projectDetector  |   ✘   |   ✘    |Load current user project                |`true`                             | `false`      |
-|projectDetector  |   ✘   |   ✘    |Load current user project                |`true`                             | `false`      |
-|zoomControl      |   ✘   |   ✘    |Show zoom control button                 |`false`                            | `true`       |
-|fullscreenControl|   ✘   |   ✘    |Show fullscreen control button           |`false`                            | `true`       |
-|fullscreenControl|   ✘   |   ✘    |Show fullscreen control button           |`false`                            | `true`       |
-|preferCanvas     |   ✘   |   ✘    |Use canvas element for rendering geometry|`false`                            | `true`       |
-|touchZoom        |   ✘   |   ✘    |Zooming when touch (on mobile)           |`false`                            | `true`       |
-|scrollWheelZoom  |   ✘   |   ✘    |Zooming when scrolling                   |`false`                            | `true`       |
-|doubleClickZoom  |   ✘   |   ✘    |Zooming when double click                |`false`                            | `true`       |
-|dragging         |   ✘   |   ✘    |Dragging map                             |`false`                            | `true`       |
+Required props
+
+|Prop name        |Dynamic|Description                              | Data example                      |Default value |
+|-----------------|:-----:|-----------------------------------------|-----------------------------------|:------------:|
+| center          |   ✓   |Center position of map                   |`[54.98, 82.89]`                   | -            |
+|  zoom           |   ✓   |Zoom level of map                        |`15`                               | -            |
+
+Optional props
+
+|Prop name        |Dynamic|Description                              | Data example                      |Default value |
+|-----------------|:-----:|-----------------------------------------|-----------------------------------|:------------:|
+| minZoom         |   ✘   |Minimal zoom level                       |`10`                               | `null`       |
+| maxZoom         |   ✘   |Maximal zoom level                       |`20`                               |`null`        |
+|maxBounds        |   ✘   |Bounds of map                            |`[[54.98, 82.89],[54.98, 82.89]]`  | `null`       |
+|  style          |   ✓   |CSS style of map container               |`{width: "500px", height: "500px"}`| `null`       |
+|geoclicker       |   ✘   |Show popup on click about place on map   |`true`                             | `false`      |
+|projectDetector  |   ✘   |Load current user project                |`true`                             | `false`      |
+|projectDetector  |   ✘   |Load current user project                |`true`                             | `false`      |
+|zoomControl      |   ✘   |Show zoom control button                 |`false`                            | `true`       |
+|fullscreenControl|   ✘   |Show fullscreen control button           |`false`                            | `true`       |
+|fullscreenControl|   ✘   |Show fullscreen control button           |`false`                            | `true`       |
+|preferCanvas     |   ✘   |Use canvas element for rendering geometry|`false`                            | `true`       |
+|touchZoom        |   ✘   |Zooming when touch (on mobile)           |`false`                            | `true`       |
+|scrollWheelZoom  |   ✘   |Zooming when scrolling                   |`false`                            | `true`       |
+|doubleClickZoom  |   ✘   |Zooming when double click                |`false`                            | `true`       |
+|dragging         |   ✘   |Dragging map                             |`false`                            | `true`       |
 
 #### Popup
 
-Popup on map or inside another component
+Required props
 
-|Prop name|Dynamic|Required|Description                                                    | Data example   |Default value |
-|---------|:-----:|:------:|---------------------------------------------------------------|----------------|:------------:|
-|   pos   |   ✓   |   ✓    |Position on map (not use if popup inside another element)      |`[54.98, 82.89]`| -            |
-|className|   ✘   |   ✘    |Popup position on map (not use if popup inside another element)|`example-string`| -            |
-|maxWidth |   ✘   |   ✘    |Max width of popup                                             |      `150`     |    `300`     |
-|minWidth |   ✘   |   ✘    |Min width of popup                                             |      `150`     |    `50`      |
-|maxHeight|   ✘   |   ✘    |Max height of popup                                            |      `150`     |    `null`    |
-|sprawling|   ✘   |   ✘    |Popup width on map width                                       |      `true`    |    `false`   |
+|Prop name|Dynamic|Description                                                    | Data example   |Default value |
+|---------|:-----:|---------------------------------------------------------------|----------------|:------------:|
+|   pos   |   ✓   |Position on map (not use if popup inside another element)      |`[54.98, 82.89]`| -            |
+
+Optional props
+
+|Prop name|Dynamic|Description                                                    | Data example   |Default value |
+|---------|:-----:|---------------------------------------------------------------|----------------|:------------:|
+|className|   ✘   |Popup position on map (not use if popup inside another element)|`example-string`| -            |
+|maxWidth |   ✘   |Max width of popup                                             |      `150`     |    `300`     |
+|minWidth |   ✘   |Min width of popup                                             |      `150`     |    `50`      |
+|maxHeight|   ✘   |Max height of popup                                            |      `150`     |    `null`    |
+|sprawling|   ✘   |Popup width on map width                                       |      `true`    |    `false`   |
+
+#### Marker
 
 ## Demo Development Server
 
