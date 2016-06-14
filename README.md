@@ -221,23 +221,25 @@ Required props
 
 Optional props
 
-|Prop name        |Dynamic|Description                              | Data example                    |Default value|
-|-----------------|:-----:|-----------------------------------------|---------------------------------|:-----------:|
-| minZoom         |   ✘   |Minimal zoom level                       |10                               | null        |
-| maxZoom         |   ✘   |Maximal zoom level                       |20                               | null        |
-|maxBounds        |   ✘   |Bounds of map                            |[[54.98, 82.89],[54.98, 82.89]]  | null        |
-|  style          |   ✓   |CSS style of map container               |{width: "500px", height: "500px"}| null        |
-|geoclicker       |   ✘   |Show popup on click about place on map   |true                             | false       |
-|projectDetector  |   ✘   |Load current user project                |true                             | false       |
-|zoomControl      |   ✘   |Show zoom control button                 |false                            | true        |
-|fullscreenControl|   ✘   |Show fullscreen control button           |false                            | true        |
-|preferCanvas     |   ✘   |Use canvas element for rendering geometry|false                            | true        |
-|touchZoom        |   ✘   |Zooming when touch (on mobile)           |false                            | true        |
-|scrollWheelZoom  |   ✘   |Zooming when scrolling                   |false                            | true        |
-|doubleClickZoom  |   ✘   |Zooming when double click                |false                            | true        |
-|dragging         |   ✘   |Dragging map                             |false                            | true        |
+|Prop name        |Dynamic|Description                              | Data example                     |Default value|
+|-----------------|:-----:|-----------------------------------------|--------------------------------- |:-----------:|
+| minZoom         |   ✘   |Minimal zoom level                       |10                                | null        |
+| maxZoom         |   ✘   |Maximal zoom level                       |20                                | null        |
+|maxBounds        |   ✘   |Bounds of map                            |[ [54.98, 82.89], [54.98, 82.89] ]| null        |
+|  style          |   ✓   |CSS style of map container               |{width: "500px", height: "500px"} | null        |
+|geoclicker       |   ✘   |Show popup on click about place on map   |true                              | false       |
+|projectDetector  |   ✘   |Load current user project                |true                              | false       |
+|zoomControl      |   ✘   |Show zoom control button                 |false                             | true        |
+|fullscreenControl|   ✘   |Show fullscreen control button           |false                             | true        |
+|preferCanvas     |   ✘   |Use canvas element for rendering geometry|false                             | true        |
+|touchZoom        |   ✘   |Zooming when touch (on mobile)           |false                             | true        |
+|scrollWheelZoom  |   ✘   |Zooming when scrolling                   |false                             | true        |
+|doubleClickZoom  |   ✘   |Zooming when double click                |false                             | true        |
+|dragging         |   ✘   |Dragging map                             |false                             | true        |
 
 #### Popup
+
+Can be inside Marker, Map, Polygon, Polyline, Rectangle.
 
 Required props
 
@@ -256,6 +258,128 @@ Optional props
 |sprawling|   ✘   |Popup width on map width       |      true    |    false    |
 
 #### Marker
+
+Required props
+
+|Prop name|Dynamic|Description    | Data example |Default value|
+|---------|:-----:|---------------|--------------|:-----------:|
+|   pos   |   ✓   |Position on map|[54.98, 82.89]| -           |
+
+Optional props
+
+|Prop name  |Dynamic|Description                                | Data example |Default value|
+|-----------|:-----:|-------------------------------------------|--------------|:-----------:|
+|   label   |   ✓   |Text of marker label                       |[54.98, 82.89]| -           |
+|staticLabel|   ✓   |Text of marker label. Label will be static.|[54.98, 82.89]| -           |
+| draggable |   ✓   |Marker is draggable                        |     true     |    false    |
+| clickable |   ✓   |Marker is clickable                        |     false    |    true     |
+
+#### Icon
+
+Can be inside Marker.
+
+Required props
+
+|Prop name|Dynamic|Description | Data example                                |Default value|
+|---------|:-----:|------------|---------------------------------------------|:-----------:|
+| iconUrl |   ✓   |Url of icon |http://maps.api.2gis.ru/2.0/example_logo.png | -           |
+| iconSize|   ✓   |Size of icon|[48, 48]                                     | -           |
+
+#### DivIcon
+
+Can be inside Marker.
+
+Required props
+
+|Prop name              |Dynamic|Description | Data example                                |Default value|
+|-----------------------|:-----:|------------|---------------------------------------------|:-----------:|
+| iconSize              |   ✓   |Size of icon|[48, 48]                                     | -           |
+|dangerouslySetInnerHTML|   ✓   | Inner html |http://maps.api.2gis.ru/2.0/example_logo.png | -           |
+
+#### Ruler
+
+Required props
+
+|Prop name|Dynamic|Description     |                    Data example                           |Default value|
+|---------|:-----:|----------------|-----------------------------------------------------------|:-----------:|
+|  points |   ✓   |Points of ruler |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]| -           |
+
+#### Polyline
+
+Required props
+
+|Prop name|Dynamic|Description     |                    Data example                           |Default value|
+|---------|:-----:|----------------|-----------------------------------------------------------|:-----------:|
+|  points |   ✓   |Points of line  |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]| -           |
+
+Optional props
+
+|Prop name|Dynamic|Description     |          Data example          |Default value|
+|---------|:-----:|----------------|--------------------------------|:-----------:|
+|  label  |   ✓   |Text of label   |example-string                  | -           |
+|  style  |   ✓   |Style of line   |{color: '#FF0000'}              | -           |
+
+#### Polygon
+
+Required props
+
+|Prop name|Dynamic|Description       |                    Data example                           |Default value|
+|---------|:-----:|------------------|-----------------------------------------------------------|:-----------:|
+|  points |   ✓   |Points of polygon |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]| -           |
+
+Optional props
+
+|Prop name|Dynamic|Description     |     Data example      |Default value|
+|---------|:-----:|----------------|-----------------------|:-----------:|
+|  label  |   ✓   |Text of label   |example-string         | -           |
+|  style  |   ✓   |Style of line   |{color: '#FF0000'}     | -           |
+
+#### Rectangle
+
+Required props
+
+|Prop name|Dynamic|Description         |               Data example             |Default value|
+|---------|:-----:|--------------------|----------------------------------------|:-----------:|
+|  bounds |   ✓   |Bounds of rectangle |[ [54.9827,82.8958], [54.9837,82.8968] ]| -           |
+
+Optional props
+
+|Prop name|Dynamic|Description     |     Data example      |Default value|
+|---------|:-----:|----------------|-----------------------|:-----------:|
+|  label  |   ✓   |Text of label   |example-string         | -           |
+|  style  |   ✓   |Style of line   |{color: '#FF0000'}     | -           |
+
+#### Circle
+
+Required props
+
+|Prop name|Dynamic|Description            |    Data example   |Default value|
+|---------|:-----:|-----------------------|-------------------|:-----------:|
+|   pos   |   ✓   |Position on map        | [54.9827,82.8958] | -           |
+| radius  |   ✓   |Circle radius in meters|       300         |   null      |
+
+Optional props
+
+|Prop name|Dynamic|Description     |     Data example      |Default value|
+|---------|:-----:|----------------|-----------------------|:-----------:|
+|  label  |   ✓   |Text of label   |example-string         | -           |
+|  style  |   ✓   |Style of line   |{color: '#FF0000'}     | -           |
+
+#### CircleMarker
+
+Required props
+
+|Prop name|Dynamic|Description            |    Data example   |Default value|
+|---------|:-----:|-----------------------|-------------------|:-----------:|
+|   pos   |   ✓   |Position on map        | [54.9827,82.8958] | -           |
+
+Optional props
+
+|Prop name|Dynamic|Description            |     Data example      |Default value|
+|---------|:-----:|-----------------------|-----------------------|:-----------:|
+| radius  |   ✓   |Circle radius in pixels|         300           |     10      |
+|  label  |   ✓   |Text of label          |example-string         | -           |
+|  style  |   ✓   |Style of line          |{color: '#FF0000'}     | -           |
 
 ## Demo Development Server
 
