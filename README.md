@@ -20,11 +20,15 @@ For installation use command `npm install 2gis-maps-react`
 
 ## Getting started
 
+##### Demo
+
+[Demo](http://2gis.github.io/2gis-maps-react/#simple-map)  
+[Source code of the demo](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/SimpleMap.js)  
+
 ##### Creation of simple map. [Api referense.](http://api.2gis.ru/doc/maps/manual/map/)
 
 A map is a basic component. 
 For creating the map you need to specify center point, zoom level and size of dom element.  
-[Demo](http://2gis.github.io/2gis-maps-react/#simple-map), [Source code of the demo](https://github.com/2gis/2gis-maps-react/blob/master/demo/src/SimpleMap.js)
   
 ```jsx
   <Map
