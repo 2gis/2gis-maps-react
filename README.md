@@ -214,10 +214,10 @@ For binding 2gis-mapsapi events use prop same to `onEvent` where Event is 2gis-m
 
 Required props
 
-|Prop name        |Dynamic|Description                              | Data example |Default value |
-|-----------------|:-----:|-----------------------------------------|--------------|:------------:|
-| center          |   ✓   |Center position of map                   |[54.98, 82.89]| -            |
-|  zoom           |   ✓   |Zoom level of map                        |15            | -            |
+|Prop name        |Dynamic|Description                              | Data example |
+|-----------------|:-----:|-----------------------------------------|--------------|
+| center          |   ✓   |Center position of map                   |[54.98, 82.89]|
+|  zoom           |   ✓   |Zoom level of map                        |15            |
 
 Optional props
 
@@ -243,9 +243,9 @@ Can be inside Marker, Map, Polygon, Polyline, Rectangle.
 
 Required props
 
-|Prop name|Dynamic|Description                                              | Data example |Default value|
-|---------|:-----:|---------------------------------------------------------|--------------|:-----------:|
-|   pos   |   ✓   |Position on map (not use if popup inside another element)|[54.98, 82.89]| -           |
+|Prop name|Dynamic|Description                                              | Data example |
+|---------|:-----:|---------------------------------------------------------|--------------|
+|   pos   |   ✓   |Position on map (not use if popup inside another element)|[54.98, 82.89]|
 
 Optional props
 
@@ -261,9 +261,9 @@ Optional props
 
 Required props
 
-|Prop name|Dynamic|Description    | Data example |Default value|
-|---------|:-----:|---------------|--------------|:-----------:|
-|   pos   |   ✓   |Position on map|[54.98, 82.89]| -           |
+|Prop name|Dynamic|Description    | Data example |
+|---------|:-----:|---------------|--------------|
+|   pos   |   ✓   |Position on map|[54.98, 82.89]|
 
 Optional props
 
@@ -280,10 +280,10 @@ Can be inside Marker.
 
 Required props
 
-|Prop name|Dynamic|Description | Data example                                |Default value|
-|---------|:-----:|------------|---------------------------------------------|:-----------:|
-| iconUrl |   ✓   |Url of icon |http://maps.api.2gis.ru/2.0/example_logo.png | -           |
-| iconSize|   ✓   |Size of icon|[48, 48]                                     | -           |
+|Prop name|Dynamic|Description | Data example                                |
+|---------|:-----:|------------|---------------------------------------------|
+| iconUrl |   ✓   |Url of icon |http://maps.api.2gis.ru/2.0/example_logo.png |
+| iconSize|   ✓   |Size of icon|[48, 48]                                     |
 
 #### DivIcon
 
@@ -300,17 +300,17 @@ Required props
 
 Required props
 
-|Prop name|Dynamic|Description     |                    Data example                           |Default value|
-|---------|:-----:|----------------|-----------------------------------------------------------|:-----------:|
-|  points |   ✓   |Points of ruler |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]| -           |
+|Prop name|Dynamic|Description     |                    Data example                           |
+|---------|:-----:|----------------|-----------------------------------------------------------|
+|  points |   ✓   |Points of ruler |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]|
 
 #### Polyline
 
 Required props
 
-|Prop name|Dynamic|Description     |                    Data example                           |Default value|
-|---------|:-----:|----------------|-----------------------------------------------------------|:-----------:|
-|  points |   ✓   |Points of line  |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]| -           |
+|Prop name|Dynamic|Description     |                    Data example                           |
+|---------|:-----:|----------------|-----------------------------------------------------------|
+|  points |   ✓   |Points of line  |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]|
 
 Optional props
 
@@ -323,9 +323,9 @@ Optional props
 
 Required props
 
-|Prop name|Dynamic|Description       |                    Data example                           |Default value|
-|---------|:-----:|------------------|-----------------------------------------------------------|:-----------:|
-|  points |   ✓   |Points of polygon |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]| -           |
+|Prop name|Dynamic|Description       |                    Data example                           |
+|---------|:-----:|------------------|-----------------------------------------------------------|
+|  points |   ✓   |Points of polygon |[ [54.9827,82.8958], [54.9837,82.8968], [54.9837,82.8938] ]|
 
 Optional props
 
@@ -338,9 +338,9 @@ Optional props
 
 Required props
 
-|Prop name|Dynamic|Description         |               Data example             |Default value|
-|---------|:-----:|--------------------|----------------------------------------|:-----------:|
-|  bounds |   ✓   |Bounds of rectangle |[ [54.9827,82.8958], [54.9837,82.8968] ]| -           |
+|Prop name|Dynamic|Description         |               Data example             |
+|---------|:-----:|--------------------|----------------------------------------|
+|  bounds |   ✓   |Bounds of rectangle |[ [54.9827,82.8958], [54.9837,82.8968] ]|
 
 Optional props
 
@@ -353,10 +353,10 @@ Optional props
 
 Required props
 
-|Prop name|Dynamic|Description            |    Data example   |Default value|
-|---------|:-----:|-----------------------|-------------------|:-----------:|
-|   pos   |   ✓   |Position on map        | [54.9827,82.8958] | -           |
-| radius  |   ✓   |Circle radius in meters|       300         |   null      |
+|Prop name|Dynamic|Description            |    Data example   |
+|---------|:-----:|-----------------------|-------------------|
+|   pos   |   ✓   |Position on map        | [54.9827,82.8958] |
+| radius  |   ✓   |Circle radius in meters|       300         |
 
 Optional props
 
@@ -369,9 +369,9 @@ Optional props
 
 Required props
 
-|Prop name|Dynamic|Description            |    Data example   |Default value|
-|---------|:-----:|-----------------------|-------------------|:-----------:|
-|   pos   |   ✓   |Position on map        | [54.9827,82.8958] | -           |
+|Prop name|Dynamic|Description            |    Data example   |
+|---------|:-----:|-----------------------|-------------------|
+|   pos   |   ✓   |Position on map        | [54.9827,82.8958] |
 
 Optional props
 
@@ -380,6 +380,37 @@ Optional props
 | radius  |   ✓   |Circle radius in pixels|         300           |     10      |
 |  label  |   ✓   |Text of label          |example-string         | -           |
 |  style  |   ✓   |Style of line          |{color: '#FF0000'}     | -           |
+
+#### Wkt
+
+Required props
+
+|Prop name|Dynamic|Description            |                         Data example                        |
+|---------|:-----:|-----------------------|-------------------------------------------------------------|
+|   data  |   ✓   |Wkt data string        | POLYGON((82.9155.04, 82.91 55.04, 82.91 55.04, 82.9155.04)) |
+
+Optional props
+
+|Prop name|Dynamic|Description            |    Data example   |Default value|
+|---------|:-----:|-----------------------|-------------------|:-----------:|
+|  style  |   ✓   |Style of objeck        | {color: '#FF0000'}| -           |
+
+#### GeoJSON
+
+Required props
+
+|Prop name|Dynamic|Description            |                                                                          Data example                                                                          |
+|---------|:-----:|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   data  |   ✓   |GeoJSON data object    | { "type": "Feature", "properties": { "address": "г. Новосибирск, пл. Карла Маркса, 7" }, "geometry": { "type": "Point", "coordinates": [82.8974, 54.9801] } }; |
+
+Optional props
+
+| Prop name   |Dynamic|Description                      |    Data example   |Default value               |
+|-------------|:-----:|---------------------------------|-------------------|:--------------------------:|
+|pointToLayer |   ✓   |Function for render point        |   function() {}   |Will be render simple Marker|
+|onEachFeature|   ✓   |Function running on every element|   function() {}   | -                          |
+|    filter   |   ✓   |Function for filter objects      |   function() {}   | -                          |
+|    style    |   ✓   |Style of object                  | {color: '#FF0000'}| -                          |
 
 ## Demo Development Server
 
