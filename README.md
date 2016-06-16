@@ -6,7 +6,7 @@
 
 ## Installation
 
-For installation use command `npm install 2gis-maps-react`
+For installation use command `npm install 2gis-maps-react 2gis-maps`
 
 [build-badge]: https://travis-ci.org/2gis/2gis-maps-react.svg?branch=master
 [build]: https://travis-ci.org/2gis/2gis-maps-react
