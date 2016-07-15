@@ -1,6 +1,6 @@
 {
   "name": "2gis-maps-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "2gis-maps React component",
   "main": "lib/index.js",
   "jsnext:main": "es6/index.js",
@@ -18,14 +18,11 @@
     "test:watch": "nwb test --server"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "react": "0.14.x"
-  },
   "devDependencies": {
     "2gis-maps": "^2.2.6",
     "nwb": "0.9.x",
-    "react": "0.14.x",
-    "react-dom": "0.14.x"
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
   },
   "author": "",
   "homepage": "",
