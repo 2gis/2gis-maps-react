@@ -29,6 +29,7 @@
   "license": "MIT",
   "repository": "git@github.com:2gis/2gis-maps-react.git",
   "keywords": [
-    "react-component"
+    "react-component",
+    "web-components"
   ]
 }
