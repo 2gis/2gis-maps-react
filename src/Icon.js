@@ -16,7 +16,7 @@ export default class Icon extends MapComponent {
         if (prevProps.iconUrl != this.props.iconUrl || prevProps.iconSize != this.props.iconSize) {
             this.setIcon();
         }
-        self.props.element._bringToFront()
+        this.props.element._bringToFront()
     }
 
     setIcon() {
