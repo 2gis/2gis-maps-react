@@ -197,7 +197,7 @@ Polygon, Polyline and Rectangle. [Demo](http://2gis.github.io/2gis-maps-react/#g
             }}
         />
         
-        <Rectangle points={[
+        <Rectangle bounds={[
                         [54.9827238554242, 82.89354085922243],
                         [54.98205895253545, 82.89488196372986]
                     ]}
