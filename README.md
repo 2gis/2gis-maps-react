@@ -1,6 +1,6 @@
 # React component [Maps API 2GIS](https://github.com/2gis/mapsapi)
 
-:construction: WARNING: This package is no longer supported. :construction:
+:construction: WARNING: This package is no longer supported. Please use https://github.com/2gis/mapsapi instead. :construction:
 
 ## Installation
 
